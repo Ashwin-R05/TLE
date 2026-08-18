@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, Mail, MapPin, Clock, Briefcase, GraduationCap } from 'lucide-react';
+import { Send, CheckCircle2, Mail, MapPin, Clock, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { cn } from '../utils/cn';
 
 type InquiryType = 'business' | 'student';
-
-const pageVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.5 } },
-  exit: { opacity: 0, transition: { duration: 0.3 } },
-};
 
 const ContactPage: React.FC = () => {
   const [inquiryType, setInquiryType] = useState<InquiryType>('business');
@@ -27,7 +22,13 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: replace with actual form submission (e.g., Formspree, Supabase, or custom API)
+    // Trigger celebratory confetti effect
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#00F0FF', '#8B5CF6', '#10B981'],
+    });
     setSubmitted(true);
   };
 
@@ -36,326 +37,308 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
-      <section className="pt-28 sm:pt-36 pb-20 sm:pb-28 relative overflow-hidden min-h-screen">
-        <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+    <div className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28">
+      {/* Background aura */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-radial from-cyan-500/10 via-violet-600/5 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-cyber opacity-20 pointer-events-none" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-            {/* ──── LEFT: Info column ──── */}
-            <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.2em] px-3 py-1 rounded-full border text-brand-cyan bg-brand-cyan/10 border-brand-cyan/30 mb-5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                  Get In Touch
-                </span>
-                <h1 className="text-3xl sm:text-4xl font-display font-bold text-white leading-tight tracking-tight mb-5">
-                  Let's start a conversation.
-                </h1>
-                <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-10">
-                  Whether you need a product shipped or need guidance on your student project — reach out. We respond within 24–48 hours.
-                </p>
-
-                {/* Contact details */}
-                <div className="space-y-5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-slate-500">
-                      <Mail size={16} />
-                    </div>
-                    <div>
-                      {/* TODO: replace with final email */}
-                      <p className="text-sm font-semibold text-white">contact@noth.in</p>
-                      <p className="text-xs text-slate-500">Email us directly</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-slate-500">
-                      <MapPin size={16} />
-                    </div>
-                    <div>
-                      {/* TODO: replace with actual location */}
-                      <p className="text-sm font-semibold text-white">Bengaluru, India</p>
-                      <p className="text-xs text-slate-500">Remote-first team</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-slate-500">
-                      <Clock size={16} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-white">Response Time</p>
-                      <p className="text-xs text-slate-500">Usually within 24 hours</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Status */}
-                <div className="mt-8 glass-panel rounded-xl p-4 flex items-center gap-3">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-emerald"></span>
-                  </span>
-                  <span className="text-xs font-mono text-brand-emerald">Currently accepting new projects</span>
-                </div>
-              </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+          {/* ──── LEFT INFORMATION COLUMN (5 cols) ──── */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              <span className="text-[10px] font-mono text-brand-cyan uppercase tracking-widest px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 inline-flex items-center gap-1.5 mb-4">
+                <Sparkles size={12} /> Direct Transmission
+              </span>
+              <h1 className="text-4xl sm:text-5xl font-syne font-extrabold text-white tracking-tight leading-[1.1] mb-4">
+                Let's engineer <span className="text-gradient-cyan-emerald">the future.</span>
+              </h1>
+              <p className="text-sm sm:text-base text-slate-400 font-sans leading-relaxed">
+                Send us your product specs, technical bottleneck, or student idea thesis. We respond directly with an engineering scope within 24 hours.
+              </p>
             </div>
 
-            {/* ──── RIGHT: Form ──── */}
-            <div className="lg:col-span-3">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="glass-panel rounded-2xl p-6 sm:p-8"
-              >
-                <AnimatePresence mode="wait">
-                  {submitted ? (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="text-center py-12"
-                    >
-                      <div className="w-16 h-16 rounded-2xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle2 size={30} className="text-brand-emerald" />
-                      </div>
-                      <h3 className="text-xl font-display font-bold text-white mb-3">
-                        Message sent successfully!
-                      </h3>
-                      <p className="text-sm text-slate-400 max-w-sm mx-auto">
-                        We've received your inquiry and will get back to you within 24–48 hours. Check your email for a confirmation.
-                      </p>
-                      <button
-                        onClick={() => {
-                          setSubmitted(false);
-                          setFormData({ name: '', email: '', organization: '', message: '', budget: '', timeline: '', ideaStage: '', domain: '' });
-                        }}
-                        className="mt-6 text-sm text-brand-cyan hover:underline"
-                      >
-                        Send another message
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <motion.form
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                    >
-                      {/* Inquiry Type Toggle */}
-                      <div>
-                        <label className="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-3 block">
-                          I'm reaching out as a:
-                        </label>
-                        <div className="grid grid-cols-2 gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setInquiryType('business')}
-                            className={cn(
-                              'flex items-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-300 border cursor-pointer',
-                              inquiryType === 'business'
-                                ? 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan/40'
-                                : 'bg-white/[0.02] text-slate-500 border-white/[0.06] hover:border-white/15'
-                            )}
-                          >
-                            <Briefcase size={16} />
-                            Business Inquiry
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setInquiryType('student')}
-                            className={cn(
-                              'flex items-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-300 border cursor-pointer',
-                              inquiryType === 'student'
-                                ? 'bg-brand-violet/10 text-brand-violet border-brand-violet/40'
-                                : 'bg-white/[0.02] text-slate-500 border-white/[0.06] hover:border-white/15'
-                            )}
-                          >
-                            <GraduationCap size={16} />
-                            Student Idea Guidance
-                          </button>
-                        </div>
-                      </div>
+            {/* Direct Cards */}
+            <div className="space-y-4 font-mono text-xs">
+              <div className="p-4 rounded-xl glass-card-bespoke flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-brand-cyan">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px]">ELECTRONIC MAIL</span>
+                  <a href="mailto:contact@noth.in" className="text-white hover:text-brand-cyan transition-colors font-bold">
+                    contact@noth.in
+                  </a>
+                </div>
+              </div>
 
-                      {/* Name + Email */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-xs font-mono text-slate-500 mb-1.5 block">Full Name *</label>
-                          <input
-                            type="text"
-                            required
-                            value={formData.name}
-                            onChange={(e) => updateField('name', e.target.value)}
-                            placeholder="Your name"
-                            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/20 transition-all"
-                          />
-                        </div>
-                        <div>
-                          <label className="text-xs font-mono text-slate-500 mb-1.5 block">Email *</label>
-                          <input
-                            type="email"
-                            required
-                            value={formData.email}
-                            onChange={(e) => updateField('email', e.target.value)}
-                            placeholder="you@email.com"
-                            className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/20 transition-all"
-                          />
-                        </div>
-                      </div>
+              <div className="p-4 rounded-xl glass-card-bespoke flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-brand-violet">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px]">COORDINATES</span>
+                  <span className="text-white font-bold">Bengaluru &amp; Distributed Nodes, India</span>
+                </div>
+              </div>
 
-                      {/* Organization / University */}
+              <div className="p-4 rounded-xl glass-card-bespoke flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-brand-emerald">
+                  <Clock size={18} />
+                </div>
+                <div>
+                  <span className="text-slate-500 block text-[10px]">RESPONSE TELEMETRY</span>
+                  <span className="text-brand-emerald font-bold">&lt; 24 Hours Guaranteed</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Live studio status */}
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.08] font-mono text-xs flex items-center gap-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-emerald"></span>
+              </span>
+              <span className="text-slate-300">Intake Channels Open for Q1/Q2 Engagements</span>
+            </div>
+          </div>
+
+          {/* ──── RIGHT INTAKE FORM (7 cols) ──── */}
+          <div className="lg:col-span-7">
+            <div className="glass-card-bespoke rounded-3xl p-6 sm:p-10 border border-white/10 hud-crosshair">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="submitted"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-center py-12 space-y-4"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto">
+                      <CheckCircle2 size={32} />
+                    </div>
+                    <h3 className="text-2xl font-syne font-bold text-white">
+                      Transmission Received.
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-400 max-w-sm mx-auto font-sans leading-relaxed">
+                      Thank you, <strong className="text-white">{formData.name}</strong>. Our engineering leads will review your submission and reply to <strong className="text-brand-cyan">{formData.email}</strong> shortly.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ name: '', email: '', organization: '', message: '', budget: '', timeline: '', ideaStage: '', domain: '' });
+                      }}
+                      className="text-xs font-mono text-brand-cyan hover:underline pt-4 block mx-auto cursor-pointer"
+                    >
+                      ❮ Send another inquiry
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
+                    {/* Inquiry Switcher */}
+                    <div>
+                      <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block mb-2.5">
+                        Routing Protocol:
+                      </span>
+                      <div className="grid grid-cols-2 gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setInquiryType('business')}
+                          className={cn(
+                            'p-3.5 rounded-xl text-xs font-mono font-semibold transition-all border flex items-center justify-center gap-2 cursor-pointer',
+                            inquiryType === 'business'
+                              ? 'bg-brand-cyan text-black border-brand-cyan font-bold shadow-glow-cyan'
+                              : 'bg-white/[0.03] text-slate-400 border-white/[0.08] hover:border-white/20'
+                          )}
+                        >
+                          <Briefcase size={15} />
+                          Business Client
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setInquiryType('student')}
+                          className={cn(
+                            'p-3.5 rounded-xl text-xs font-mono font-semibold transition-all border flex items-center justify-center gap-2 cursor-pointer',
+                            inquiryType === 'student'
+                              ? 'bg-brand-violet text-white border-brand-violet font-bold shadow-glow-violet'
+                              : 'bg-white/[0.03] text-slate-400 border-white/[0.08] hover:border-white/20'
+                          )}
+                        >
+                          <GraduationCap size={15} />
+                          Student Mentorship
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Name + Email */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs">
                       <div>
-                        <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                          {inquiryType === 'business' ? 'Company / Organization' : 'University & Department'}
+                        <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                          Full Name *
                         </label>
                         <input
                           type="text"
-                          value={formData.organization}
-                          onChange={(e) => updateField('organization', e.target.value)}
-                          placeholder={inquiryType === 'business' ? 'Company name' : 'e.g. MIT CSE, 3rd Year'}
-                          className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/20 transition-all"
-                        />
-                      </div>
-
-                      {/* Context-specific fields */}
-                      <AnimatePresence mode="wait">
-                        {inquiryType === 'business' ? (
-                          <motion.div
-                            key="business-fields"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-                          >
-                            <div>
-                              <label className="text-xs font-mono text-slate-500 mb-1.5 block">Budget Range</label>
-                              <select
-                                value={formData.budget}
-                                onChange={(e) => updateField('budget', e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-brand-cyan/50 transition-all appearance-none cursor-pointer"
-                              >
-                                <option value="" className="bg-surface-200">Select range</option>
-                                <option value="under-50k" className="bg-surface-200">Under ₹50K</option>
-                                <option value="50k-2l" className="bg-surface-200">₹50K – ₹2L</option>
-                                <option value="2l-5l" className="bg-surface-200">₹2L – ₹5L</option>
-                                <option value="5l-plus" className="bg-surface-200">₹5L+</option>
-                                <option value="not-sure" className="bg-surface-200">Not sure yet</option>
-                              </select>
-                            </div>
-                            <div>
-                              <label className="text-xs font-mono text-slate-500 mb-1.5 block">Timeline</label>
-                              <select
-                                value={formData.timeline}
-                                onChange={(e) => updateField('timeline', e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-brand-cyan/50 transition-all appearance-none cursor-pointer"
-                              >
-                                <option value="" className="bg-surface-200">Select timeline</option>
-                                <option value="2-weeks" className="bg-surface-200">2–3 Weeks</option>
-                                <option value="1-month" className="bg-surface-200">1 Month</option>
-                                <option value="2-3-months" className="bg-surface-200">2–3 Months</option>
-                                <option value="ongoing" className="bg-surface-200">Ongoing / Retainer</option>
-                              </select>
-                            </div>
-                          </motion.div>
-                        ) : (
-                          <motion.div
-                            key="student-fields"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-                          >
-                            <div>
-                              <label className="text-xs font-mono text-slate-500 mb-1.5 block">Idea Stage</label>
-                              <select
-                                value={formData.ideaStage}
-                                onChange={(e) => updateField('ideaStage', e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-brand-violet/50 transition-all appearance-none cursor-pointer"
-                              >
-                                <option value="" className="bg-surface-200">Select stage</option>
-                                <option value="raw-idea" className="bg-surface-200">Raw idea / concept</option>
-                                <option value="researching" className="bg-surface-200">Researching & validating</option>
-                                <option value="prototyping" className="bg-surface-200">Building a prototype</option>
-                                <option value="stuck" className="bg-surface-200">Stuck on implementation</option>
-                                <option value="documentation" className="bg-surface-200">Need paper / patent help</option>
-                              </select>
-                            </div>
-                            <div>
-                              <label className="text-xs font-mono text-slate-500 mb-1.5 block">Target Domain</label>
-                              <select
-                                value={formData.domain}
-                                onChange={(e) => updateField('domain', e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-brand-violet/50 transition-all appearance-none cursor-pointer"
-                              >
-                                <option value="" className="bg-surface-200">Select domain</option>
-                                <option value="web-mobile" className="bg-surface-200">Web / Mobile App</option>
-                                <option value="ai-ml" className="bg-surface-200">AI / ML</option>
-                                <option value="iot-embedded" className="bg-surface-200">IoT / Embedded</option>
-                                <option value="blockchain" className="bg-surface-200">Blockchain / Web3</option>
-                                <option value="healthtech" className="bg-surface-200">HealthTech</option>
-                                <option value="edtech" className="bg-surface-200">EdTech</option>
-                                <option value="other" className="bg-surface-200">Other</option>
-                              </select>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* Message */}
-                      <div>
-                        <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                          {inquiryType === 'business' ? 'Project Details *' : 'Tell Us About Your Idea *'}
-                        </label>
-                        <textarea
                           required
-                          rows={5}
-                          value={formData.message}
-                          onChange={(e) => updateField('message', e.target.value)}
-                          placeholder={
-                            inquiryType === 'business'
-                              ? 'Describe your project, the key problem you want solved, and any technical requirements...'
-                              : 'Describe your idea, what stage you are at, what you have built so far, and what specific help you need...'
-                          }
-                          className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/20 transition-all resize-none"
+                          value={formData.name}
+                          onChange={(e) => updateField('name', e.target.value)}
+                          placeholder="e.g. Rahul Sharma"
+                          className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white text-xs placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan transition-all"
                         />
                       </div>
 
-                      {/* Submit */}
-                      <button
-                        type="submit"
-                        className={cn(
-                          'w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer',
-                          inquiryType === 'business'
-                            ? 'bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan/20 hover:border-brand-cyan/70 hover:shadow-glow-cyan'
-                            : 'bg-brand-violet/10 text-brand-violet border border-brand-violet/40 hover:bg-brand-violet/20 hover:border-brand-violet/70 hover:shadow-glow-violet'
-                        )}
-                      >
-                        <Send size={16} />
-                        {inquiryType === 'business' ? 'Submit Business Inquiry' : 'Apply for Guidance'}
-                      </button>
+                      <div>
+                        <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => updateField('email', e.target.value)}
+                          placeholder="e.g. rahul@company.com"
+                          className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white text-xs placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan transition-all"
+                        />
+                      </div>
+                    </div>
 
-                      <p className="text-[10px] text-center text-slate-600 font-mono">
-                        We respect your data. No spam, no newsletters — just a direct reply to your inquiry.
-                      </p>
-                    </motion.form>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                    {/* Organization / University */}
+                    <div className="font-sans text-xs">
+                      <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                        {inquiryType === 'business' ? 'Company / Brand Name' : 'College / University & Dept'}
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.organization}
+                        onChange={(e) => updateField('organization', e.target.value)}
+                        placeholder={inquiryType === 'business' ? 'e.g. Nexus Logistics Pvt Ltd' : 'e.g. IIT Madras, 3rd Yr CSE'}
+                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white text-xs placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan transition-all"
+                      />
+                    </div>
+
+                    {/* Dynamic Fields */}
+                    {inquiryType === 'business' ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs">
+                        <div>
+                          <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                            Target Budget Scope
+                          </label>
+                          <select
+                            value={formData.budget}
+                            onChange={(e) => updateField('budget', e.target.value)}
+                            className="w-full px-4 py-3 rounded-xl bg-[#090C16] border border-white/[0.08] text-white text-xs focus:outline-none focus:border-brand-cyan cursor-pointer"
+                          >
+                            <option value="">Select Range</option>
+                            <option value="under-1L">Under ₹1,00,000</option>
+                            <option value="1L-3L">₹1,00,000 – ₹3,00,000</option>
+                            <option value="3L-8L">₹3,00,000 – ₹8,00,000</option>
+                            <option value="custom">Enterprise / Custom Scope</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                            Target Launch Timeline
+                          </label>
+                          <select
+                            value={formData.timeline}
+                            onChange={(e) => updateField('timeline', e.target.value)}
+                            className="w-full px-4 py-3 rounded-xl bg-[#090C16] border border-white/[0.08] text-white text-xs focus:outline-none focus:border-brand-cyan cursor-pointer"
+                          >
+                            <option value="">Select Timeline</option>
+                            <option value="rapid-3w">Rapid Sprint (2–3 Weeks)</option>
+                            <option value="month">1 Month</option>
+                            <option value="quarter">2–3 Months</option>
+                            <option value="retainer">Ongoing Engineering Retainer</option>
+                          </select>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs">
+                        <div>
+                          <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                            Current Project Phase
+                          </label>
+                          <select
+                            value={formData.ideaStage}
+                            onChange={(e) => updateField('ideaStage', e.target.value)}
+                            className="w-full px-4 py-3 rounded-xl bg-[#090C16] border border-white/[0.08] text-white text-xs focus:outline-none focus:border-brand-violet cursor-pointer"
+                          >
+                            <option value="">Select Phase</option>
+                            <option value="raw-idea">Initial Hypothesis / Sketch</option>
+                            <option value="prototype-blocked">Prototype Stuck / Bugs</option>
+                            <option value="hackathon-prep">Hackathon Crunch Time</option>
+                            <option value="patent-paper">IEEE Paper / Patent Guidance</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                            Domain Category
+                          </label>
+                          <select
+                            value={formData.domain}
+                            onChange={(e) => updateField('domain', e.target.value)}
+                            className="w-full px-4 py-3 rounded-xl bg-[#090C16] border border-white/[0.08] text-white text-xs focus:outline-none focus:border-brand-violet cursor-pointer"
+                          >
+                            <option value="">Select Category</option>
+                            <option value="ai-ml">AI / Deep Learning</option>
+                            <option value="iot-hardware">IoT / Embedded Systems</option>
+                            <option value="web-app">Full-Stack Web / Mobile</option>
+                            <option value="blockchain">Web3 / Decentralized</option>
+                          </select>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Message Box */}
+                    <div className="font-sans text-xs">
+                      <label className="font-mono text-[10px] text-slate-400 uppercase tracking-wider block mb-1.5">
+                        {inquiryType === 'business' ? 'Project Requirements / Problem Brief *' : 'Idea Description & What You Need Help With *'}
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={formData.message}
+                        onChange={(e) => updateField('message', e.target.value)}
+                        placeholder={
+                          inquiryType === 'business'
+                            ? 'Describe what you want to build, current technical challenges, and any required third-party integrations...'
+                            : 'Explain what you want to invent, who it is for, what you have built so far, and where you are stuck...'
+                        }
+                        className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white text-xs placeholder:text-slate-600 focus:outline-none focus:border-brand-cyan transition-all resize-none"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      className={cn(
+                        'w-full py-4 rounded-xl font-mono text-xs uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 cursor-pointer',
+                        inquiryType === 'business'
+                          ? 'bg-brand-cyan text-black hover:bg-cyan-300 hover:shadow-glow-cyan'
+                          : 'bg-brand-violet text-white hover:bg-violet-600 hover:shadow-glow-violet'
+                      )}
+                    >
+                      <Send size={15} />
+                      {inquiryType === 'business' ? 'Transmit Client Project Scope' : 'Submit Mentorship Application'}
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
-      </section>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

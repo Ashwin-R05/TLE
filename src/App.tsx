@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
+import { CursorSpotlight } from './components/interactive/CursorSpotlight';
 
 // Lazy-load pages for performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -20,12 +21,14 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-// Loading spinner
+// Sleek hacker loading indicator
 const PageLoader: React.FC = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-10 h-10 rounded-xl border-2 border-brand-cyan/30 border-t-brand-cyan animate-spin" />
-      <span className="text-xs font-mono text-slate-600 tracking-widest">LOADING</span>
+    <div className="flex flex-col items-center gap-3">
+      <div className="w-10 h-10 rounded-xl border-2 border-brand-cyan/20 border-t-brand-cyan animate-spin" />
+      <span className="text-[10px] font-mono text-slate-500 tracking-widest uppercase">
+        INITIALIZING NOTH RUNTIME
+      </span>
     </div>
   </div>
 );
@@ -52,7 +55,8 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
+      <CursorSpotlight />
+      <div className="flex flex-col min-h-screen relative z-10">
         <Navbar />
         <main className="flex-1">
           <AnimatedRoutes />

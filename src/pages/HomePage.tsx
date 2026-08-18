@@ -1,198 +1,202 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronRight, Zap, Shield, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, Check, ArrowUpRight } from 'lucide-react';
 import { HeroCanvas } from '../components/3d/HeroCanvas';
+import { LiveTelemetryTerminal } from '../components/interactive/LiveTelemetryTerminal';
 import { DualPathFork } from '../components/sections/DualPathFork';
-import { ShowcaseStrip } from '../components/sections/ShowcaseStrip';
+import { InteractiveProjectCard } from '../components/interactive/InteractiveProjectCard';
+import { PROJECTS_DATA } from '../data/projects';
 
-const stats = [
-  { label: 'Production Systems Live', value: '14+', icon: <Zap size={16} /> },
-  { label: 'Student Builders Mentored', value: '80+', icon: <Users size={16} /> },
-  { label: 'Avg Mobile Load Speed', value: '< 1.1s', icon: <Shield size={16} /> },
-];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
 
-const pageVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-  exit: { opacity: 0, transition: { duration: 0.3 } },
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
 };
 
 const HomePage: React.FC = () => {
   return (
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
-      {/* ──── HERO ──── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Layered background effects */}
-        <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+    <div className="relative overflow-hidden">
+      {/* ──── HERO COMMAND CENTER ──── */}
+      <section className="relative min-h-[92vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24">
+        {/* Ambient background glows */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-radial from-cyan-500/10 via-violet-600/5 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 sm:pt-28 pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* Copy Column */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="order-2 lg:order-1"
-            >
-              <div className="flex items-center gap-2 mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald"></span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center"
+          >
+            {/* Left Copy & Headline (7 cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              {/* Studio Status Pill */}
+              <motion.div variants={itemVariants} className="flex items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.1] backdrop-blur-md">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan"></span>
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-300 tracking-wider">
+                    NOTH STUDIO // 2 OPERATING NODES
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Kinetic Headline */}
+              <motion.h1
+                variants={itemVariants}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-syne font-extrabold text-white tracking-tight leading-[1.05]"
+              >
+                We engineer digital software.{' '}
+                <span className="text-gradient-hologram block sm:inline">
+                  We mentor student inventors.
                 </span>
-                <span className="text-[10px] sm:text-xs font-mono text-brand-emerald tracking-wider uppercase">
-                  Accepting New Projects
-                </span>
-              </div>
+              </motion.h1>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight">
-                We build digital products.{' '}
-                <span className="text-gradient-brand">We mentor student builders.</span>
-              </h1>
+              {/* Concrete Subheading */}
+              <motion.p
+                variants={itemVariants}
+                className="text-base sm:text-lg text-slate-400 font-sans leading-relaxed max-w-2xl"
+              >
+                A student-founded studio based in India. We ship high-velocity web/mobile systems for growing companies, and guide ambitious student developers from raw hypothesis to working prototype and patent direction.
+              </motion.p>
 
-              <p className="mt-5 sm:mt-6 text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl">
-                Noth is a student-founded tech studio. We ship production-grade web apps, mobile products, and SaaS MVPs for businesses — and guide ambitious student inventors from raw idea to working prototype and patent direction.
-              </p>
-
-              {/* CTAs */}
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              {/* CTA Action Buttons */}
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2"
+              >
                 <Link
                   to="/businesses"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan/20 hover:border-brand-cyan/70 hover:shadow-glow-cyan transition-all duration-300"
+                  className="px-7 py-4 rounded-xl font-mono text-xs uppercase tracking-wider font-bold bg-brand-cyan text-black hover:bg-cyan-300 hover:shadow-glow-cyan transition-all flex items-center justify-center gap-2 group cursor-pointer"
                 >
-                  I need a product built
-                  <ArrowRight size={16} />
+                  Explore Client Services
+                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
+
                 <Link
                   to="/students"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-brand-violet/10 text-brand-violet border border-brand-violet/40 hover:bg-brand-violet/20 hover:border-brand-violet/70 hover:shadow-glow-violet transition-all duration-300"
+                  className="px-7 py-4 rounded-xl font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 bg-white/[0.04] border border-white/15 hover:border-brand-violet hover:bg-brand-violet/10 hover:text-white transition-all flex items-center justify-center gap-2 group cursor-pointer"
                 >
-                  I have a student project idea
-                  <ArrowRight size={16} />
+                  Student Idea Guidance
+                  <Sparkles size={14} className="text-brand-violet" />
                 </Link>
-              </div>
+              </motion.div>
 
-              {/* Stats strip */}
-              <div className="mt-10 sm:mt-14 flex flex-wrap gap-6 sm:gap-10">
-                {stats.map((stat) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-slate-500">
-                      {stat.icon}
-                    </div>
-                    <div>
-                      <p className="text-lg sm:text-xl font-display font-bold text-white">{stat.value}</p>
-                      <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">{stat.label}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+              {/* Live telemetry teaser stats */}
+              <motion.div
+                variants={itemVariants}
+                className="pt-6 border-t border-white/[0.08] grid grid-cols-3 gap-4 font-mono"
+              >
+                <div>
+                  <div className="text-xl sm:text-2xl font-bold font-syne text-white">14+</div>
+                  <div className="text-[10px] text-slate-500 uppercase tracking-wider">Systems Deployed</div>
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-bold font-syne text-brand-cyan">&lt; 0.9s</div>
+                  <div className="text-[10px] text-slate-500 uppercase tracking-wider">Avg Core Web Vitals</div>
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-bold font-syne text-brand-violet">80+</div>
+                  <div className="text-[10px] text-slate-500 uppercase tracking-wider">Student Builders</div>
+                </div>
+              </motion.div>
+            </div>
 
-            {/* 3D Canvas Column */}
+            {/* Right 3D Visual + Live Terminal (5 cols) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="order-1 lg:order-2 h-[320px] sm:h-[400px] lg:h-[520px] relative"
+              variants={itemVariants}
+              className="lg:col-span-5 flex flex-col gap-6"
             >
-              <HeroCanvas />
-              {/* Radial glow behind 3D element */}
-              <div className="absolute inset-0 bg-gradient-radial from-brand-cyan/8 via-transparent to-transparent pointer-events-none" />
-            </motion.div>
-          </div>
-        </div>
+              {/* 3D Scene viewport */}
+              <div className="h-[280px] sm:h-[320px] w-full rounded-2xl glass-card-bespoke relative overflow-hidden flex items-center justify-center">
+                <div className="absolute top-3 left-3 text-[10px] font-mono text-slate-500 uppercase tracking-wider z-10 flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping" />
+                  R3F Geometric Engine // 60 FPS
+                </div>
+                <HeroCanvas />
+              </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="text-[9px] font-mono text-slate-600 uppercase tracking-widest">Scroll</span>
-          <div className="w-5 h-8 rounded-full border border-white/10 flex justify-center pt-1.5">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-              className="w-1 h-1.5 bg-brand-cyan/60 rounded-full"
-            />
-          </div>
-        </motion.div>
+              {/* Interactive hacker terminal widget */}
+              <LiveTelemetryTerminal />
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* ──── DUAL PATH FORK ──── */}
+      {/* ──── DUAL PATH INTERACTIVE FORK ──── */}
       <DualPathFork />
 
-      {/* ──── SHOWCASE STRIP ──── */}
-      <ShowcaseStrip />
-
-      {/* ──── PHILOSOPHY TEASER ──── */}
+      {/* ──── WHAT WE'VE BUILT: BESPOKE WORK SHOWCASE ──── */}
       <section className="py-20 sm:py-28 relative">
-        <div className="absolute inset-0 bg-hero-glow opacity-20 pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.2em] px-3 py-1 rounded-full border text-slate-400 bg-white/5 border-white/10 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-              Operating Philosophy
-            </span>
-            <blockquote className="text-xl sm:text-2xl md:text-3xl font-display font-semibold text-white leading-relaxed tracking-tight">
-              "We don't sell promises — we ship working software and teach others to do the same."
-            </blockquote>
-            <p className="mt-6 text-sm text-slate-500">
-              Built by engineers who compete in hackathons, debug at 3 AM, and believe great software should be accessible to founders and students alike.
-            </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+            <div>
+              <span className="text-[10px] font-mono text-brand-cyan uppercase tracking-widest px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 inline-block mb-3">
+                Selected Work &amp; Case Studies
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-syne font-bold text-white tracking-tight">
+                What we've engineered.
+              </h2>
+            </div>
+
             <Link
-              to="/about"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-cyan mt-6 hover:underline group"
+              to="/businesses"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-brand-cyan hover:underline"
             >
-              Read Our Story <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+              View Full Work Archive <ArrowUpRight size={14} />
             </Link>
-          </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {PROJECTS_DATA.map((project, index) => (
+              <InteractiveProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ──── CTA BANNER ──── */}
-      <section className="py-16 sm:py-20 border-y border-white/[0.04]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass-panel rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 via-transparent to-brand-violet/5 pointer-events-none" />
-            <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4">
-                Ready to build something real?
-              </h2>
-              <p className="text-slate-400 max-w-xl mx-auto mb-8">
-                Whether you're a startup founder looking for a technical team or a student with an idea that won't let you sleep — let's talk.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold rounded-xl bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan/20 hover:border-brand-cyan/70 hover:shadow-glow-cyan transition-all duration-300"
-              >
-                Start a Conversation
-                <ArrowRight size={16} />
-              </Link>
+      {/* ──── PHILOSOPHY STRIP ──── */}
+      <section className="py-20 border-t border-white/[0.08] relative overflow-hidden bg-[#070912]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="text-[10px] font-mono text-brand-violet uppercase tracking-widest px-3 py-1 rounded-full bg-brand-violet/10 border border-brand-violet/30 inline-block mb-4">
+            Our Working Ethos
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-syne font-bold text-white mb-6">
+            "Zero Bloat. Production Grade. Real Mentorship."
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-8">
+            We don't outsource to junior contractors or sell cookie-cutter templates. When you partner with Noth, you work directly with competitive builders who understand systems at the metal and UI at pixel perfection.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 text-xs font-mono">
+            <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.08] text-slate-300 flex items-center gap-2">
+              <Check size={14} className="text-brand-emerald" /> Full Source Handover
             </div>
-          </motion.div>
+            <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.08] text-slate-300 flex items-center gap-2">
+              <Check size={14} className="text-brand-cyan" /> 30-Day Post-Launch Warranty
+            </div>
+            <div className="px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.08] text-slate-300 flex items-center gap-2">
+              <Check size={14} className="text-brand-violet" /> Non-Ghostwriting Student Policy
+            </div>
+          </div>
         </div>
       </section>
-    </motion.div>
+    </div>
   );
 };
 
