@@ -8,7 +8,7 @@ export const FOUNDER_STORY = {
   headline: "Built by students who write code, break things, and ship real systems.",
   tagline: "We bridge the gap between academic theory and production software engineering.",
   storyParagraphs: [
-    "Noth began in late-night engineering hostel rooms in 2023. We watched two consistent breakdowns happening in parallel: small businesses and startups were getting overcharged by bloated agencies for slow, bloated software; while ambitious student developers with brilliant ideas were getting stuck in tutorial hell, failing hackathons, or abandoning novel projects because no one taught them how to architect, validate, or patent a real technical system.",
+    "TLE began in late-night engineering hostel rooms in 2023. We watched two consistent breakdowns happening in parallel: small businesses and startups were getting overcharged by bloated agencies for slow, bloated software; while ambitious student developers with brilliant ideas were getting stuck in tutorial hell, failing hackathons, or abandoning novel projects because no one taught them how to architect, validate, or patent a real technical system.",
     "Instead of choosing between building client products or teaching peers, we merged both into an integrated studio model: we build high-velocity, production-grade digital software for businesses, and use our real-world engineering reps to mentor the next wave of student innovators through rigorous, hands-on guidance.",
     "We don't sell generic theoretical courses or write your code for you. We provide the technical sparring partner, architecture review, and execution velocity we wished we had when we wrote our first lines of code."
   ],
@@ -28,7 +28,7 @@ export const FOUNDER_STORY = {
       linkedin: 'https://linkedin.com'
     },
     {
-      name: 'Noth Core Engineering Group',
+      name: 'TLE Core Engineering Group',
       role: 'Student Builders & Research Mentors',
       bio: 'A collective of competitive programmers, UI designers, and systems hackers from top engineering universities in India.',
       github: 'https://github.com',

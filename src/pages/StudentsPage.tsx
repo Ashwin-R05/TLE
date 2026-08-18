@@ -30,7 +30,7 @@ const StudentsPage: React.FC = () => {
               You don't need another generic theoretical course. You need experienced peer mentors who have competed in hackathons, deployed real systems, and navigated patent filings. Someone to review your architecture, challenge your assumptions, and help you structure a defensible, working product.
             </p>
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-              Noth's student guidance program is built to bridge that gap — giving you the technical sparring and milestone structure needed to turn an idea into an undeniable engineering accomplishment.
+              TLE's student guidance program is built to bridge that gap — giving you the technical sparring and milestone structure needed to turn an idea into an undeniable engineering accomplishment.
             </p>
           </div>
 

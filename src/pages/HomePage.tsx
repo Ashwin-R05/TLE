@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="relative overflow-hidden">
       {/* ──── HERO SECTION ──── */}
-      <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 bg-soft-glow">
+      <section className="relative min-h-[90vh] flex items-center pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28 bg-soft-glow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
           <motion.div
             variants={containerVariants}
@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
                   </span>
                   <span className="text-xs font-semibold text-blue-300">
-                    Noth Technology Studio &amp; Mentorship
+                    TLE Technology Studio &amp; Mentorship
                   </span>
                 </div>
               </motion.div>
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
               {/* Clean Confident Headline */}
               <motion.h1
                 variants={itemVariants}
-                className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight leading-[1.1]"
+                className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight leading-[1.15]"
               >
                 We engineer digital products.{' '}
                 <span className="text-gradient-accent block sm:inline">
@@ -68,7 +68,7 @@ const HomePage: React.FC = () => {
                 variants={itemVariants}
                 className="text-base sm:text-lg text-slate-300 font-sans leading-relaxed max-w-2xl"
               >
-                Noth is a student-founded technology studio. We deliver production-grade web applications, UI/UX systems, and SaaS MVPs for growing companies — and guide student innovators from early hypothesis to working prototype and patent direction.
+                TLE is a student-founded technology studio. We deliver production-grade web applications, UI/UX systems, and SaaS MVPs for growing companies — and guide student innovators from early hypothesis to working prototype and patent direction.
               </motion.p>
 
               {/* CTAs */}
@@ -93,10 +93,10 @@ const HomePage: React.FC = () => {
                 </Link>
               </motion.div>
 
-              {/* Key Trust Metrics */}
+              {/* Key Trust Metrics (removed border-t line) */}
               <motion.div
                 variants={itemVariants}
-                className="pt-6 border-t border-white/[0.08] grid grid-cols-3 gap-4"
+                className="pt-6 grid grid-cols-3 gap-4"
               >
                 <div>
                   <div className="text-2xl font-bold font-display text-white">14+</div>
@@ -112,6 +112,7 @@ const HomePage: React.FC = () => {
                 </div>
               </motion.div>
             </div>
+
 
             {/* Right 3D Visual + Capabilities Dashboard (5 cols) */}
             <motion.div
@@ -163,7 +164,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* ──── CORPORATE ETHOS STRIP ──── */}
-      <section className="py-20 border-t border-white/[0.06] bg-surface-200/50">
+      <section className="py-20 bg-surface-200/40">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-xs font-semibold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 inline-block mb-4">
             Our Studio Standard
@@ -172,7 +173,7 @@ const HomePage: React.FC = () => {
             "Engineering Clarity. Measurable Performance."
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-            We operate with radical transparency. No bloated overhead, no black boxes. When you work with Noth, you get dedicated engineers who write clean, maintainable code and take full responsibility for delivery.
+            We operate with radical transparency. No bloated overhead, no black boxes. When you work with TLE, you get dedicated engineers who write clean, maintainable code and take full responsibility for delivery.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 text-xs">

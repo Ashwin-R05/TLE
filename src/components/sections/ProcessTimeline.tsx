@@ -4,7 +4,7 @@ import { PROCESS_STEPS } from '../../data/services';
 
 export const ProcessTimeline: React.FC = () => {
   return (
-    <section className="py-20 sm:py-28 relative border-t border-white/[0.04]">
+    <section className="py-20 sm:py-28 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 inline-block mb-3">

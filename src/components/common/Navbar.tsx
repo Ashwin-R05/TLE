@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-[#090D16]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-subtle'
+            ? 'bg-[#090D16]/85 backdrop-blur-xl shadow-subtle'
             : 'bg-transparent'
         )}
       >
@@ -44,10 +44,10 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
-              N
+              TLE
             </div>
             <span className="font-display font-bold text-lg text-white tracking-tight">
-              noth<span className="text-blue-400">.in</span>
+              tle<span className="text-blue-400">.in</span>
             </span>
           </Link>
 

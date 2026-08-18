@@ -44,11 +44,11 @@ export const DualPathFork: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative border-t border-white/[0.04]">
+    <section className="py-20 sm:py-28 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 inline-block mb-3">
-            Two Pillars of Noth
+            Two Pillars of TLE
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
             How can we partner with you?

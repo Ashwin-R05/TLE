@@ -21,7 +21,7 @@ const AboutPage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-20">
         <div className="max-w-3xl">
           <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 inline-flex items-center gap-1.5 mb-4">
-            About Noth
+            About TLE
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight leading-[1.1] mb-6">
@@ -43,7 +43,7 @@ const AboutPage: React.FC = () => {
               Our Origin
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4">
-              Why we started Noth.
+              Why we started TLE.
             </h2>
           </div>
 
@@ -117,7 +117,7 @@ const AboutPage: React.FC = () => {
             Leadership
           </span>
           <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
-            The Team Behind Noth
+            The Team Behind TLE
           </h2>
         </div>
 
