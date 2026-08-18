@@ -18,12 +18,11 @@ export const Navbar: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
@@ -31,30 +30,29 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <motion.header
-        initial={{ y: -80 }}
+        initial={{ y: -60 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4 }}
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20'
+            ? 'bg-[#090D16]/85 backdrop-blur-xl border-b border-white/[0.08] shadow-subtle'
             : 'bg-transparent'
         )}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-brand-cyan/20 to-brand-violet/20 border border-brand-cyan/30 flex items-center justify-center group-hover:border-brand-cyan/60 transition-colors duration-300">
-              <span className="text-brand-cyan font-mono font-bold text-xs tracking-widest">N</span>
-              <div className="absolute -inset-1 rounded-lg bg-brand-cyan/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
+              N
             </div>
             <span className="font-display font-bold text-lg text-white tracking-tight">
-              noth<span className="text-brand-cyan">.in</span>
+              noth<span className="text-blue-400">.in</span>
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1 bg-surface-200/60 border border-white/[0.06] px-2 py-1 rounded-full backdrop-blur-md">
             {NAV_LINKS.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -62,20 +60,13 @@ export const Navbar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300',
+                    'relative px-4 py-1.5 text-xs font-medium rounded-full transition-all duration-200',
                     isActive
-                      ? 'text-brand-cyan'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'text-white bg-white/10 shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200'
                   )}
                 >
                   {link.label}
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-active"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-brand-cyan rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </Link>
               );
             })}
@@ -85,7 +76,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             <Link
               to="/contact"
-              className="px-5 py-2.5 text-sm font-semibold text-brand-cyan border border-brand-cyan/40 rounded-xl bg-brand-cyan/5 hover:bg-brand-cyan/15 hover:border-brand-cyan/70 hover:shadow-glow-cyan transition-all duration-300"
+              className="px-5 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all shadow-glow-blue cursor-pointer"
             >
               Start a Project
             </Link>
@@ -94,63 +85,51 @@ export const Navbar: React.FC = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="md:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
             aria-label="Toggle navigation"
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </nav>
       </motion.header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-2xl pt-20"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 md:hidden bg-[#090D16]/95 backdrop-blur-2xl pt-24 px-6 pb-8"
           >
-            <div className="flex flex-col items-center gap-2 px-6 py-8">
-              {NAV_LINKS.map((link, index) => {
+            <div className="flex flex-col gap-2">
+              {NAV_LINKS.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
-                  <motion.div
+                  <Link
                     key={link.path}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.3 }}
-                    className="w-full"
+                    to={link.path}
+                    className={cn(
+                      'py-3.5 px-4 rounded-xl text-sm font-medium transition-all',
+                      isActive
+                        ? 'text-blue-400 bg-blue-500/10 border border-blue-500/20'
+                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    )}
                   >
-                    <Link
-                      to={link.path}
-                      className={cn(
-                        'block w-full text-center py-4 text-lg font-medium rounded-xl transition-all duration-300',
-                        isActive
-                          ? 'text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/20'
-                          : 'text-slate-300 hover:text-white hover:bg-white/5'
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
+                    {link.label}
+                  </Link>
                 );
               })}
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-                className="w-full mt-4"
-              >
+              <div className="mt-4 pt-4 border-t border-white/10">
                 <Link
                   to="/contact"
-                  className="block w-full text-center py-4 text-lg font-semibold text-brand-cyan border border-brand-cyan/40 rounded-xl bg-brand-cyan/5 hover:bg-brand-cyan/15 transition-all"
+                  className="block w-full text-center py-3.5 text-xs font-semibold uppercase tracking-wider text-white bg-blue-600 rounded-xl"
                 >
                   Start a Project
                 </Link>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         )}

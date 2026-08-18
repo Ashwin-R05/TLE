@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Compass } from 'lucide-react';
+import { ArrowRight, Sparkles, Compass, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const IdeaFeasibilityCalculator: React.FC = () => {
@@ -11,27 +11,27 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
   const getFeasibilityInsight = () => {
     if (stage === 'raw') {
       return {
-        readinessScore: '35%',
-        primaryHurdle: 'Undefined value proposition & missing prior-art validation',
-        recommendation: 'Conduct a 4-hour prior art patent sweep before writing any code. Avoid building another generic wrapper.',
-        stepToFocus: 'Step 1 & 2 (Idea Articulation + Mom Test User Interviews)',
-        accent: '#00F0FF',
+        readinessScore: 'Early Stage',
+        primaryHurdle: 'Undefined user problem & lack of prior-art benchmark',
+        recommendation: 'Complete a structured prior-art search across patents and existing products before writing backend code.',
+        stepToFocus: 'Phase 1 & 2: Problem Understanding & Prior-Art Benchmarking',
+        accentColor: '#3B82F6',
       };
     } else if (stage === 'proto') {
       return {
-        readinessScore: '70%',
-        primaryHurdle: 'Edge-case handling & unquantified benchmarking vs baselines',
-        recommendation: 'Build a repeatable evaluation dataset. Isolate your single novelty claim to prepare for paper / patent drafting.',
-        stepToFocus: 'Step 4 & 7 (Novelty Formulation + Technical Documentation)',
-        accent: '#8B5CF6',
+        readinessScore: 'Prototyping Phase',
+        primaryHurdle: 'Edge-case handling & unquantified performance claims',
+        recommendation: 'Establish repeatable evaluation metrics and isolate your technical novelty for academic / patent filing.',
+        stepToFocus: 'Phase 4 & 7: Novelty Formulation & Technical Documentation',
+        accentColor: '#6366F1',
       };
     } else {
       return {
-        readinessScore: '85%',
-        primaryHurdle: 'Patent disclosure safety & grant application structuring',
-        recommendation: 'File provisional specification (Form 1 & 2) before any public hackathon demonstration or GitHub release.',
-        stepToFocus: 'Step 8 (Patent Specification & Incubation Grant Roadmapping)',
-        accent: '#10B981',
+        readinessScore: 'Launch & IP Ready',
+        primaryHurdle: 'Provisional patent protection & grant proposal structure',
+        recommendation: 'File provisional patent specifications (Form 1 & 2) before public hackathon presentations or open-source releases.',
+        stepToFocus: 'Phase 8: Patent Filing & Grant Roadmapping',
+        accentColor: '#10B981',
       };
     }
   };
@@ -39,24 +39,24 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
   const insight = getFeasibilityInsight();
 
   return (
-    <div className="glass-card-bespoke rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden hud-crosshair">
+    <div className="card-pro rounded-3xl p-6 sm:p-10 shadow-elevated">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <span className="text-[10px] font-mono text-brand-violet uppercase tracking-widest px-2.5 py-1 rounded-full bg-brand-violet/10 border border-brand-violet/30 inline-flex items-center gap-1.5 mb-2">
-            <Sparkles size={12} />
-            Interactive Tool
+          <span className="text-xs font-semibold text-indigo-400 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 inline-flex items-center gap-1.5 mb-2">
+            <Sparkles size={13} />
+            Interactive Assessment
           </span>
           <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
-            Instant Idea Feasibility Diagnostic
+            Project Feasibility &amp; Roadmap Planner
           </h3>
           <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Simulate how our engineering team evaluates student project viability.
+            See how our mentors assess project scope, engineering bottlenecks, and patent viability.
           </p>
         </div>
 
-        <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-right font-mono text-xs">
-          <span className="text-slate-500 block text-[10px]">ESTIMATED VIABILITY</span>
-          <span className="text-xl font-bold font-display" style={{ color: insight.accent }}>
+        <div className="p-3.5 rounded-xl bg-surface-100/80 border border-white/10 text-right">
+          <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Assessment</span>
+          <span className="text-base sm:text-lg font-bold font-display" style={{ color: insight.accentColor }}>
             {insight.readinessScore}
           </span>
         </div>
@@ -66,23 +66,23 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         {/* Domain */}
         <div>
-          <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-2">
-            1. Target Domain
+          <label className="text-xs font-semibold text-slate-300 block mb-2">
+            1. Technology Domain
           </label>
           <div className="grid grid-cols-2 gap-2">
             {[
-              { id: 'ai', label: 'AI / ML' },
-              { id: 'iot', label: 'IoT / Robotics' },
-              { id: 'web3', label: 'Web3 / P2P' },
-              { id: 'saas', label: 'Web / App SaaS' },
+              { id: 'ai', label: 'AI / Machine Learning' },
+              { id: 'iot', label: 'IoT / Embedded Systems' },
+              { id: 'web3', label: 'Web3 / Distributed' },
+              { id: 'saas', label: 'Web & Mobile App' },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => setDomain(item.id)}
-                className={`py-2 px-3 rounded-lg text-xs font-mono transition-all text-left cursor-pointer border ${
+                className={`py-2 px-3 rounded-xl text-xs font-medium transition-all text-left cursor-pointer border ${
                   domain === item.id
-                    ? 'bg-brand-violet/20 border-brand-violet/60 text-white shadow-sm'
-                    : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                    ? 'bg-blue-600/20 border-blue-500/50 text-white shadow-sm'
+                    : 'bg-surface-100/50 border-white/[0.06] text-slate-400 hover:border-white/20'
                 }`}
               >
                 {item.label}
@@ -91,24 +91,24 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
           </div>
         </div>
 
-        {/* Current Stage */}
+        {/* Current Status */}
         <div>
-          <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-2">
-            2. Current Status
+          <label className="text-xs font-semibold text-slate-300 block mb-2">
+            2. Current Project Status
           </label>
           <div className="grid grid-cols-1 gap-2">
             {[
-              { id: 'raw', label: 'Raw Idea / Sketch' },
-              { id: 'proto', label: 'Partial Prototype Built' },
-              { id: 'novel', label: 'Working System with Novelty' },
+              { id: 'raw', label: 'Early Concept / Rough Idea' },
+              { id: 'proto', label: 'Partial Prototype In Progress' },
+              { id: 'novel', label: 'Working System with Novel Claims' },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => setStage(item.id)}
-                className={`py-2 px-3 rounded-lg text-xs font-mono transition-all text-left cursor-pointer border ${
+                className={`py-2 px-3 rounded-xl text-xs font-medium transition-all text-left cursor-pointer border ${
                   stage === item.id
-                    ? 'bg-brand-cyan/20 border-brand-cyan/60 text-white shadow-sm'
-                    : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                    ? 'bg-indigo-600/20 border-indigo-500/50 text-white shadow-sm'
+                    : 'bg-surface-100/50 border-white/[0.06] text-slate-400 hover:border-white/20'
                 }`}
               >
                 {item.label}
@@ -117,24 +117,24 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
           </div>
         </div>
 
-        {/* Timeline Deadline */}
+        {/* Target Deadline */}
         <div>
-          <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-2">
-            3. Target Horizon
+          <label className="text-xs font-semibold text-slate-300 block mb-2">
+            3. Target Milestone
           </label>
           <div className="grid grid-cols-1 gap-2">
             {[
-              { id: 'hackathon', label: 'Upcoming Hackathon (2–3 Weeks)' },
-              { id: 'semester', label: 'Final-Year Project / Capstone' },
-              { id: 'patent', label: 'Research Paper / Patent Spec' },
+              { id: 'hackathon', label: 'Hackathon (2–3 Weeks)' },
+              { id: 'semester', label: 'Capstone / Final Year Project' },
+              { id: 'patent', label: 'Research Publication / Patent' },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => setTimeline(item.id)}
-                className={`py-2 px-3 rounded-lg text-xs font-mono transition-all text-left cursor-pointer border ${
+                className={`py-2 px-3 rounded-xl text-xs font-medium transition-all text-left cursor-pointer border ${
                   timeline === item.id
-                    ? 'bg-brand-emerald/20 border-brand-emerald/60 text-white shadow-sm'
-                    : 'bg-white/[0.02] border-white/[0.06] text-slate-400 hover:border-white/20'
+                    ? 'bg-emerald-600/20 border-emerald-500/50 text-white shadow-sm'
+                    : 'bg-surface-100/50 border-white/[0.06] text-slate-400 hover:border-white/20'
                 }`}
               >
                 {item.label}
@@ -144,49 +144,50 @@ export const IdeaFeasibilityCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Diagnostic Result Box */}
+      {/* Structured Recommendation */}
       <motion.div
         key={`${domain}-${stage}-${timeline}`}
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-5 sm:p-6 rounded-2xl bg-[#090C16] border border-white/10 space-y-3"
+        className="p-5 sm:p-6 rounded-2xl bg-surface-100/80 border border-white/10 space-y-4"
       >
         <div className="flex items-start gap-3">
-          <Compass size={18} className="text-brand-cyan flex-shrink-0 mt-0.5" />
+          <Compass size={20} className="text-blue-400 flex-shrink-0 mt-0.5" />
           <div>
-            <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider block">
-              Critical Mentorship Focus Area:
+            <span className="text-xs font-medium text-slate-400 block">
+              Recommended Mentorship Focus:
             </span>
-            <span className="text-sm sm:text-base font-semibold text-white font-display">
+            <span className="text-sm sm:text-base font-semibold text-white">
               {insight.stepToFocus}
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
-          <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
-            <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider block mb-1">
-              Main Risk to Solve:
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div className="p-3.5 rounded-xl bg-surface-200/90 border border-white/5">
+            <span className="font-semibold text-amber-400 block mb-1">
+              Key Challenge to Address:
             </span>
-            <p className="text-slate-300">{insight.primaryHurdle}</p>
+            <p className="text-slate-300 leading-relaxed">{insight.primaryHurdle}</p>
           </div>
-          <div className="p-3 rounded-xl bg-cyan-500/5 border border-cyan-500/15">
-            <span className="font-mono text-[10px] text-cyan-400 uppercase tracking-wider block mb-1">
-              Engineering Action:
+          <div className="p-3.5 rounded-xl bg-surface-200/90 border border-white/5">
+            <span className="font-semibold text-blue-400 block mb-1">
+              Action Plan:
             </span>
-            <p className="text-slate-300">{insight.recommendation}</p>
+            <p className="text-slate-300 leading-relaxed">{insight.recommendation}</p>
           </div>
         </div>
 
-        <div className="pt-3 flex items-center justify-between">
-          <span className="text-[11px] font-mono text-slate-500">
-            Want us to review your specific architecture?
+        <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <span className="text-slate-400 flex items-center gap-1.5">
+            <CheckCircle2 size={14} className="text-emerald-400" />
+            1-on-1 personalized advisory available
           </span>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-brand-violet hover:text-brand-cyan transition-colors"
+            className="text-indigo-400 hover:text-indigo-300 font-semibold inline-flex items-center gap-1"
           >
-            Apply for 1-on-1 Review <ArrowRight size={13} />
+            Apply for Mentorship Session <ArrowRight size={13} />
           </Link>
         </div>
       </motion.div>
