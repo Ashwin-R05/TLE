@@ -1,0 +1,319 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Globe, ArrowRight, Instagram, Twitter } from 'lucide-react';
+import { AboutSection } from '../components/AboutSection';
+import { FeaturedVideoSection } from '../components/FeaturedVideoSection';
+import { PhilosophySection } from '../components/PhilosophySection';
+import { ServicesSection } from '../components/ServicesSection';
+
+export const Index: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rafIdRef = useRef<number | null>(null);
+  const isFadingOutRef = useRef<boolean>(false);
+  const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  // Smooth vanilla JS requestAnimationFrame opacity fade helper
+  const animateOpacity = (
+    from: number,
+    to: number,
+    durationMs: number,
+    onComplete?: () => void
+  ) => {
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+    }
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const currentOpacity = from + (to - from) * progress;
+
+      if (videoRef.current) {
+        videoRef.current.style.opacity = currentOpacity.toString();
+      }
+
+      if (progress < 1) {
+        rafIdRef.current = requestAnimationFrame(tick);
+      } else {
+        rafIdRef.current = null;
+        if (onComplete) onComplete();
+      }
+    };
+
+    rafIdRef.current = requestAnimationFrame(tick);
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.style.opacity = '0';
+
+    const handleCanPlay = () => {
+      video.play().catch(() => {
+        // Autoplay may be restricted until interaction
+      });
+      animateOpacity(0, 1, 500);
+    };
+
+    const handleTimeUpdate = () => {
+      if (video.duration) {
+        const remaining = video.duration - video.currentTime;
+        if (remaining <= 0.55 && !isFadingOutRef.current) {
+          isFadingOutRef.current = true;
+          const current = parseFloat(video.style.opacity || '1');
+          animateOpacity(current, 0, 500);
+        }
+      }
+    };
+
+    const handleEnded = () => {
+      if (videoRef.current) {
+        videoRef.current.style.opacity = '0';
+      }
+      setTimeout(() => {
+        if (!videoRef.current) return;
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+        isFadingOutRef.current = false;
+        animateOpacity(0, 1, 500);
+      }, 100);
+    };
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('ended', handleEnded);
+
+    // Initial check if already playable
+    if (video.readyState >= 3) {
+      video.play().catch(() => {});
+      animateOpacity(0, 1, 500);
+    }
+
+    return () => {
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setIsSubscribed(true);
+    setTimeout(() => setIsSubscribed(false), 3500);
+  };
+
+  return (
+    <div className="bg-black text-white min-h-screen w-full select-none selection:bg-white/20 selection:text-white">
+      {/* ========================================================================= */}
+      {/* SECTION 1 -- HERO (Full Viewport) */}
+      {/* ========================================================================= */}
+      <section className="min-h-screen overflow-hidden relative flex flex-col justify-between">
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4"
+          className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none"
+          muted
+          autoPlay
+          playsInline
+          preload="auto"
+          style={{ opacity: 0 }}
+        />
+
+        {/* Subtle Dark Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none z-0" />
+
+        {/* Navbar */}
+        <header className="relative z-20 px-6 py-6 w-full">
+          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+            {/* Left: Logo & Nav items */}
+            <div className="flex items-center">
+              <a href="#" className="flex items-center gap-2 group">
+                <Globe className="w-6 h-6 text-white group-hover:rotate-45 transition-transform duration-500" />
+                <span className="text-white font-semibold text-lg tracking-tight">
+                  Asme
+                </span>
+              </a>
+
+              {/* Desktop Nav Links */}
+              <div className="hidden md:flex items-center gap-8 ml-8">
+                <a
+                  href="#features"
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
+                >
+                  Features
+                </a>
+                <a
+                  href="#pricing"
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
+                >
+                  Pricing
+                </a>
+                <a
+                  href="#about"
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
+                >
+                  About
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Auth buttons */}
+            <div className="flex items-center gap-4">
+              <button className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2">
+                Sign Up
+              </button>
+              <button className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer">
+                Login
+              </button>
+            </div>
+          </nav>
+        </header>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[5%] md:-translate-y-[10%]">
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white tracking-tight whitespace-nowrap font-instrument font-normal mb-8"
+          >
+            Know it then <em className="italic">all</em>.
+          </motion.h1>
+
+          {/* Email input */}
+          <motion.form
+            onSubmit={handleSubscribe}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-xl w-full"
+          >
+            <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 w-full border-white/10">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={
+                  isSubscribed ? 'Thank you for subscribing!' : 'Enter your email'
+                }
+                className="bg-transparent text-white placeholder:text-white/40 text-sm md:text-base outline-none flex-1 font-sans"
+              />
+              <button
+                type="submit"
+                aria-label="Submit email"
+                className="bg-white rounded-full p-3 text-black hover:bg-white/90 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
+              >
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.form>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-white text-sm leading-relaxed px-4 max-w-lg mt-6 mb-8 font-light"
+          >
+            Stay updated with the latest news and insights. Subscribe to our
+            newsletter today and never miss out on exciting updates.
+          </motion.p>
+
+          {/* Manifesto Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer"
+          >
+            Manifesto
+          </motion.button>
+        </div>
+
+        {/* Social Icons Footer */}
+        <div className="relative z-10 flex justify-center gap-4 pb-12">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
+          >
+            <Instagram className="w-5 h-5" />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Twitter"
+            className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
+          >
+            <Twitter className="w-5 h-5" />
+          </a>
+          <a
+            href="#"
+            aria-label="Global Network"
+            className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
+          >
+            <Globe className="w-5 h-5" />
+          </a>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 2 -- ABOUT SECTION */}
+      {/* ========================================================================= */}
+      <AboutSection />
+
+      {/* ========================================================================= */}
+      {/* SECTION 3 -- FEATURED VIDEO */}
+      {/* ========================================================================= */}
+      <FeaturedVideoSection />
+
+      {/* ========================================================================= */}
+      {/* SECTION 4 -- PHILOSOPHY / INNOVATION x VISION */}
+      {/* ========================================================================= */}
+      <PhilosophySection />
+
+      {/* ========================================================================= */}
+      {/* SECTION 5 -- SERVICES / WHAT WE DO */}
+      {/* ========================================================================= */}
+      <ServicesSection />
+
+      {/* Modern Minimalist Global Footer */}
+      <footer className="border-t border-white/5 py-12 px-6 text-center text-white/40 text-xs bg-black">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-white/60" />
+            <span className="text-white/80 font-medium">Asme</span>
+            <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="#about" className="hover:text-white transition-colors">
+              About
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Terms
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+export default Index;
