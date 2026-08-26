@@ -32,16 +32,22 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-4xl md:text-6xl lg:text-7xl text-white leading-[1.15] tracking-tight"
         >
-          Pioneering{' '}
+          Building{' '}
           <span className="font-instrument italic text-white/60">
-            then ideas
+            then solutions
           </span>{' '}
-          for{' '}
+          for businesses that need them, and ideas{' '}
           <br className="hidden md:inline" />
           <span className="font-instrument italic text-white/60">
-            minds that then create, build, and inspire.
-          </span>
+            then projects
+          </span>{' '}
+          for students who have them.
         </motion.h2>
+
+        {/* Manifesto Content Anchor */}
+        <div id="manifesto" className="mt-8 text-white/60 text-sm md:text-base max-w-2xl font-light leading-relaxed">
+          We build real digital solutions for businesses, and guide students from confused idea to real, understood project — impact first, sustainable business second.
+        </div>
       </div>
     </section>
   );

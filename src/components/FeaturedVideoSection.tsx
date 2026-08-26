@@ -36,14 +36,18 @@ export const FeaturedVideoSection: React.FC = () => {
                 Our Approach
               </div>
               <p className="text-white text-sm md:text-base leading-relaxed">
-                We believe in the power of curiosity-driven exploration. Every
-                project starts with a question, and every answer opens a new door
-                to innovation.
+                We believe real work starts with actually understanding the
+                problem — a business's or a student's. Every project starts with
+                a question, not a template answer.
               </p>
             </div>
 
             {/* Right Button */}
             <motion.button
+              onClick={() => {
+                const el = document.getElementById('about');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium self-start md:self-auto hover:bg-white/5 transition-colors cursor-pointer"

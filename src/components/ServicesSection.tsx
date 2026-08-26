@@ -13,18 +13,18 @@ const services: ServiceCardData[] = [
   {
     videoUrl:
       'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4',
-    tag: 'Strategy',
-    title: 'Research & Insight',
+    tag: 'FOR BUSINESSES',
+    title: 'Digital Solutions',
     description:
-      'We dig deep into data, culture, and human behavior to surface the insights that drive meaningful, lasting change.',
+      'Web, app, and software development, UI/UX design, and digital marketing — built by people who understand the problem, not just the brief.',
   },
   {
     videoUrl:
       'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4',
-    tag: 'Craft',
-    title: 'Design & Execution',
+    tag: 'FOR STUDENTS',
+    title: 'Idea & Project Guidance',
     description:
-      'From concept to launch, we obsess over every detail to deliver experiences that feel effortless and look extraordinary.',
+      'From confused idea to real project — we mentor students through research, feasibility, design, and documentation, without building it for them.',
   },
 ];
 
@@ -33,7 +33,7 @@ export const ServicesSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
+    <section id="services" className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
       {/* Subtle radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)] pointer-events-none" />
 
@@ -58,6 +58,7 @@ export const ServicesSection: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.tag}
+              id={index === 1 ? 'students' : undefined}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{

@@ -71,10 +71,10 @@ export const PhilosophySection: React.FC = () => {
                 Shape the future
               </div>
               <p className="text-white/70 text-base md:text-lg leading-relaxed font-light">
-                We believe that the best work emerges when curiosity meets
-                conviction. Our process is designed to uncover hidden
-                opportunities and translate them into experiences that resonate
-                long after the first impression.
+                We believe the best work happens when technical depth meets real
+                understanding — whether that's a business that needs a system that
+                actually works, or a student who needs to understand what they're
+                building, not just hand it in.
               </p>
             </div>
           </motion.div>

@@ -138,23 +138,23 @@ export const Index: React.FC = () => {
               <a href="#" className="flex items-center gap-2 group">
                 <Globe className="w-6 h-6 text-white group-hover:rotate-45 transition-transform duration-500" />
                 <span className="text-white font-semibold text-lg tracking-tight">
-                  Asme
+                  TLE
                 </span>
               </a>
 
               {/* Desktop Nav Links */}
               <div className="hidden md:flex items-center gap-8 ml-8">
                 <a
-                  href="#features"
+                  href="#services"
                   className="text-white/80 hover:text-white text-sm font-medium transition-colors"
                 >
-                  Features
+                  Services
                 </a>
                 <a
-                  href="#pricing"
+                  href="#students"
                   className="text-white/80 hover:text-white text-sm font-medium transition-colors"
                 >
-                  Pricing
+                  Students
                 </a>
                 <a
                   href="#about"
@@ -165,14 +165,20 @@ export const Index: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Auth buttons */}
+            {/* Right: Action buttons */}
             <div className="flex items-center gap-4">
-              <button className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2">
-                Sign Up
-              </button>
-              <button className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer">
-                Login
-              </button>
+              <a
+                href="#students"
+                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2"
+              >
+                For Students
+              </a>
+              <a
+                href="#services"
+                className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block"
+              >
+                For Businesses
+              </a>
             </div>
           </nav>
         </header>
@@ -186,7 +192,7 @@ export const Index: React.FC = () => {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white tracking-tight whitespace-nowrap font-instrument font-normal mb-8"
           >
-            Know it then <em className="italic">all</em>.
+            Ideas, then <em className="italic">impact</em>.
           </motion.h1>
 
           {/* Email input */}
@@ -199,18 +205,18 @@ export const Index: React.FC = () => {
           >
             <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 w-full border-white/10">
               <input
-                type="email"
+                type="text"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={
-                  isSubscribed ? 'Thank you for subscribing!' : 'Enter your email'
+                  isSubscribed ? 'Thank you! We\'ll reach out soon.' : "Tell us what you're building"
                 }
                 className="bg-transparent text-white placeholder:text-white/40 text-sm md:text-base outline-none flex-1 font-sans"
               />
               <button
                 type="submit"
-                aria-label="Submit email"
+                aria-label="Submit message"
                 className="bg-white rounded-full p-3 text-black hover:bg-white/90 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
               >
                 <ArrowRight className="w-5 h-5" />
@@ -225,12 +231,15 @@ export const Index: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="text-white text-sm leading-relaxed px-4 max-w-lg mt-6 mb-8 font-light"
           >
-            Stay updated with the latest news and insights. Subscribe to our
-            newsletter today and never miss out on exciting updates.
+            We build digital products for businesses, and help students turn ideas into real, understood projects. Tell us where you're starting from.
           </motion.p>
 
           {/* Manifesto Button */}
           <motion.button
+            onClick={() => {
+              const el = document.getElementById('manifesto') || document.getElementById('about');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -297,8 +306,10 @@ export const Index: React.FC = () => {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-white/60" />
-            <span className="text-white/80 font-medium">Asme</span>
+            <span className="text-white/80 font-medium">TLE</span>
             <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
+            <span className="mx-1 text-white/20">|</span>
+            <span>Tech studio, Trichy</span>
           </div>
           <div className="flex items-center gap-6">
             <a href="#about" className="hover:text-white transition-colors">
