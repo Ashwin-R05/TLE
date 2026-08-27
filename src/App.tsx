@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Index from './pages/Index';
 import DigitalSolutionsPage from './pages/DigitalSolutionsPage';
+import StudentGuidancePage from './pages/StudentGuidancePage';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -30,6 +31,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/digital-solutions" element={<DigitalSolutionsPage />} />
+        <Route path="/student-guidance" element={<StudentGuidancePage />} />
       </Routes>
     </Router>
   );

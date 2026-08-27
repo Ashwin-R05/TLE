@@ -38,11 +38,7 @@ export const ServicesSection: React.FC = () => {
     if (tag === 'FOR BUSINESSES') {
       navigate('/digital-solutions');
     } else {
-      const subject = encodeURIComponent('Idea & Project Guidance Inquiry — TLE');
-      const body = encodeURIComponent(
-        'Hi TLE team,\n\nI am a student looking for guidance and mentorship on my project idea.\n\nProject Details:\n- Name & College:\n- Project Topic / Concept:\n- Areas needing guidance (Research / Architecture / Documentation / Tech Stack):\n\nLooking forward to hearing from you!'
-      );
-      window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+      navigate('/student-guidance');
     }
   };
 

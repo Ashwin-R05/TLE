@@ -173,19 +173,6 @@ export const Index: React.FC = () => {
 
               {/* Desktop Nav Links */}
               <div className="hidden md:flex items-center gap-8 ml-8">
-                <Link
-                  to="/digital-solutions"
-                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
-                >
-                  Services
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection('students')}
-                  className="text-white/80 hover:text-white text-sm font-medium transition-colors cursor-pointer bg-transparent border-none p-0"
-                >
-                  Students
-                </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('about')}
@@ -198,13 +185,12 @@ export const Index: React.FC = () => {
 
             {/* Right: Action buttons */}
             <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={() => scrollToSection('students')}
-                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2 bg-transparent border-none"
+              <Link
+                to="/student-guidance"
+                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2"
               >
                 For Students
-              </button>
+              </Link>
               <Link
                 to="/digital-solutions"
                 className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block"
