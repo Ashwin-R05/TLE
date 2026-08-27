@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Globe, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Logo } from '../components/common/Logo';
 
 interface ProjectItem {
   id: string;
@@ -84,9 +85,9 @@ export const DigitalSolutionsPage: React.FC = () => {
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-2 group cursor-pointer bg-transparent border-none p-0 text-left"
+              className="flex items-center gap-2.5 group cursor-pointer bg-transparent border-none p-0 text-left"
             >
-              <Globe className="w-6 h-6 text-white group-hover:rotate-45 transition-transform duration-500" />
+              <Logo className="w-6 h-6 text-white group-hover:scale-105 transition-transform duration-300" />
               <span className="text-white font-semibold text-lg tracking-tight">
                 TLE
               </span>
@@ -328,8 +329,8 @@ export const DigitalSolutionsPage: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 py-12 px-6 text-center text-white/40 text-xs bg-black">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Globe className="w-4 h-4 text-white/60" />
+          <div className="flex items-center gap-2.5">
+            <Logo className="w-4 h-4 text-white/80" />
             <span className="text-white/80 font-medium">TLE</span>
             <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
             <span className="mx-1 text-white/20">|</span>
