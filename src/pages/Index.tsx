@@ -126,7 +126,7 @@ export const Index: React.FC = () => {
       `Hi TLE team,\n\nHere is what I am building / exploring:\n\n${message.trim()}\n\nContact Details:\n- Name:\n- Email / Phone:\n\nLooking forward to speaking!`
     );
 
-    window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:mounaragamtle@gmail.com?subject=${subject}&body=${body}`;
 
     setIsSubmitted(true);
     setTimeout(() => {
@@ -249,7 +249,7 @@ export const Index: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-white/70 text-xs mt-3 font-light tracking-wide"
               >
-                Email draft generated. If your client didn't open automatically, write to us directly at contact@tle.in.
+                Email draft generated. If your client didn't open automatically, write to us directly at mounaragamtle@gmail.com.
               </motion.p>
             )}
           </motion.form>
@@ -299,7 +299,7 @@ export const Index: React.FC = () => {
             <Twitter className="w-5 h-5" />
           </a>
           <a
-            href="mailto:contact@tle.in"
+            href="mailto:mounaragamtle@gmail.com"
             aria-label="Email TLE"
             className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
           >
@@ -380,8 +380,8 @@ export const Index: React.FC = () => {
             <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
               Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
               For any questions or data requests, please write to us at{' '}
-              <a href="mailto:contact@tle.in" className="text-white underline">
-                contact@tle.in
+              <a href="mailto:mounaragamtle@gmail.com" className="text-white underline">
+                mounaragamtle@gmail.com
               </a>.
             </p>
             <button

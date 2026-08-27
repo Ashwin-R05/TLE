@@ -73,7 +73,7 @@ export const DigitalSolutionsPage: React.FC = () => {
     const body = encodeURIComponent(
       `Hi TLE team,\n\nI saw your work on "${projectName}" and would like to explore a similar custom digital solution for our business.\n\nProject Scope:\n- Business Name:\n- Requirements & Goals:\n- Timeline:\n\nLooking forward to speaking!`
     );
-    window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:mounaragamtle@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -317,7 +317,7 @@ export const DigitalSolutionsPage: React.FC = () => {
           </p>
 
           <a
-            href="mailto:contact@tle.in?subject=Start%20a%20Project%20%E2%80%94%20Digital%20Solutions%20TLE&body=Hi%20TLE%20team,%0A%0AI%20would%20like%20to%20start%20a%20project.%0A%0AOverview:%0A- Business/Brand Name:%0A- Scope:%0A- Target Timeline:%0A%0ALooking%20forward%20to%20connecting!"
+            href="mailto:mounaragamtle@gmail.com?subject=Start%20a%20Project%20%E2%80%94%20Digital%20Solutions%20TLE&body=Hi%20TLE%20team,%0A%0AI%20would%20like%20to%20start%20a%20project.%0A%0AOverview:%0A- Business/Brand Name:%0A- Scope:%0A- Target Timeline:%0A%0ALooking%20forward%20to%20connecting!"
             className="liquid-glass rounded-full px-8 py-3.5 text-white text-sm font-medium hover:bg-white/5 transition-all inline-flex items-center gap-2 group cursor-pointer hover:scale-105 active:scale-95"
           >
             <span>Start a project.</span>
@@ -378,8 +378,8 @@ export const DigitalSolutionsPage: React.FC = () => {
             <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
               Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
               For any questions or data requests, please write to us at{' '}
-              <a href="mailto:contact@tle.in" className="text-white underline">
-                contact@tle.in
+              <a href="mailto:mounaragamtle@gmail.com" className="text-white underline">
+                mounaragamtle@gmail.com
               </a>.
             </p>
             <button

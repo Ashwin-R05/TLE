@@ -113,7 +113,7 @@ export const StudentGuidancePage: React.FC = () => {
       `Hi TLE team,\n\nI am a student looking for guidance on my project idea.\n\nHere is what I am thinking of building:\n\n${ideaText.trim()}\n\nMy Details:\n- Name & College:\n- Year & Department:\n- Where I am stuck:\n\nLooking forward to speaking with you!`
     );
 
-    window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:mounaragamtle@gmail.com?subject=${subject}&body=${body}`;
 
     setIsSubmitted(true);
     setTimeout(() => {
@@ -432,13 +432,13 @@ export const StudentGuidancePage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-white/70 text-xs mt-3 font-light tracking-wide"
               >
-                Draft created. If your mail app didn't open, write directly to contact@tle.in.
+                Draft created. If your mail app didn't open, write directly to mounaragamtle@gmail.com.
               </motion.p>
             )}
           </form>
 
           <a
-            href="mailto:contact@tle.in?subject=%5BStudent%20Inquiry%5D%20Project%20Idea%20Mentorship%20%E2%80%94%20TLE&body=Hi%20TLE%20team,%0A%0AI%20am%20a%20student%20and%20would%20like%20guidance%20on%20my%20project%20idea.%0A%0AProject%20Concept:%0A- Name:%0A- College%20%26%20Year:%0A- Idea%20Summary:%0A%0ALooking%20forward%20to%20connecting!"
+            href="mailto:mounaragamtle@gmail.com?subject=%5BStudent%20Inquiry%5D%20Project%20Idea%20Mentorship%20%E2%80%94%20TLE&body=Hi%20TLE%20team,%0A%0AI%20am%20a%20student%20and%20would%20like%20guidance%20on%20my%20project%20idea.%0A%0AProject%20Concept:%0A- Name:%0A- College%20%26%20Year:%0A- Idea%20Summary:%0A%0ALooking%20forward%20to%20connecting!"
             className="liquid-glass rounded-full px-8 py-3.5 text-white text-sm font-medium hover:bg-white/5 transition-all inline-flex items-center gap-2 group cursor-pointer hover:scale-105 active:scale-95"
           >
             <span>Tell us your idea</span>
@@ -499,8 +499,8 @@ export const StudentGuidancePage: React.FC = () => {
             <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
               Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
               For any questions or data requests, please write to us at{' '}
-              <a href="mailto:contact@tle.in" className="text-white underline">
-                contact@tle.in
+              <a href="mailto:mounaragamtle@gmail.com" className="text-white underline">
+                mounaragamtle@gmail.com
               </a>.
             </p>
             <button

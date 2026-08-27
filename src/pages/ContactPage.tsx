@@ -54,8 +54,8 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-slate-400 block text-[11px]">Email Us Directly</span>
-                  <a href="mailto:contact@tle.in" className="text-white hover:text-blue-400 transition-colors font-semibold text-sm">
-                    contact@tle.in
+                  <a href="mailto:mounaragamtle@gmail.com" className="text-white hover:text-blue-400 transition-colors font-semibold text-sm">
+                    mounaragamtle@gmail.com
                   </a>
                 </div>
               </div>
