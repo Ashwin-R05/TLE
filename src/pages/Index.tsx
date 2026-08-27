@@ -157,17 +157,17 @@ export const Index: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black pointer-events-none z-0" />
 
         {/* Navbar */}
-        <header className="relative z-20 px-6 py-6 w-full">
-          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+        <header className="relative z-20 px-4 sm:px-6 py-4 sm:py-6 w-full">
+          <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between">
             {/* Left: Logo & Nav items */}
             <div className="flex items-center">
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="flex items-center gap-2.5 group cursor-pointer bg-transparent border-none p-0 text-left"
+                className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer bg-transparent border-none p-0 text-left"
               >
-                <Logo className="w-6 h-6 text-white group-hover:scale-105 transition-transform duration-300" />
-                <span className="text-white font-semibold text-lg tracking-tight">
+                <Logo className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-105 transition-transform duration-300" />
+                <span className="text-white font-semibold text-base sm:text-lg tracking-tight">
                   TLE
                 </span>
               </button>
@@ -185,16 +185,16 @@ export const Index: React.FC = () => {
             </div>
 
             {/* Right: Action buttons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Link
                 to="/student-guidance"
-                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2"
+                className="text-white text-xs sm:text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-1.5 sm:px-2 whitespace-nowrap"
               >
                 For Students
               </Link>
               <Link
                 to="/digital-solutions"
-                className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block"
+                className="liquid-glass rounded-full px-3.5 sm:px-6 py-1.5 sm:py-2 text-white text-xs sm:text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block whitespace-nowrap"
               >
                 For Businesses
               </Link>
@@ -203,13 +203,13 @@ export const Index: React.FC = () => {
         </header>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[5%] md:-translate-y-[10%]">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 text-center -translate-y-[2%] sm:-translate-y-[5%] md:-translate-y-[10%]">
           {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white tracking-tight whitespace-nowrap font-instrument font-normal mb-8"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-tight leading-[1.08] font-instrument font-normal mb-6 sm:mb-8 max-w-4xl"
           >
             Ideas, then <em className="italic">impact</em>.
           </motion.h1>
@@ -222,7 +222,7 @@ export const Index: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-xl w-full"
           >
-            <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 w-full border-white/10">
+            <div className="liquid-glass rounded-full pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 w-full border-white/10">
               <input
                 type="text"
                 required
@@ -233,14 +233,14 @@ export const Index: React.FC = () => {
                     ? 'Opening your email client...'
                     : "Tell us what you're building"
                 }
-                className="bg-transparent text-white placeholder:text-white/40 text-sm md:text-base outline-none flex-1 font-sans"
+                className="bg-transparent text-white placeholder:text-white/40 text-xs sm:text-sm md:text-base outline-none flex-1 font-sans min-w-0"
               />
               <button
                 type="submit"
                 aria-label="Submit project message"
-                className="bg-white rounded-full p-3 text-black hover:bg-white/90 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
+                className="bg-white rounded-full p-2.5 sm:p-3 text-black hover:bg-white/90 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
               >
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 h-5" />
               </button>
             </div>
             {isSubmitted && (
@@ -259,7 +259,7 @@ export const Index: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white text-sm leading-relaxed px-4 max-w-lg mt-6 mb-8 font-light"
+            className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed px-2 sm:px-4 max-w-lg mt-5 sm:mt-6 mb-6 sm:mb-8 font-light"
           >
             We build digital products for businesses, and help students turn ideas into real, understood projects. Tell us where you're starting from.
           </motion.p>
@@ -272,7 +272,7 @@ export const Index: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer"
+            className="liquid-glass rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer"
           >
             Manifesto
           </motion.button>
@@ -329,14 +329,14 @@ export const Index: React.FC = () => {
       <ServicesSection />
 
       {/* Modern Minimalist Global Footer */}
-      <footer className="border-t border-white/5 py-12 px-6 text-center text-white/40 text-xs bg-black">
+      <footer className="border-t border-white/5 py-10 sm:py-12 px-4 sm:px-6 text-center text-white/40 text-xs bg-black">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
             <Logo className="w-4 h-4 text-white/80" />
             <span className="text-white/80 font-medium">TLE</span>
             <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
-            <span className="mx-1 text-white/20">|</span>
-            <span>Tech studio, Trichy</span>
+            <span className="mx-1 text-white/20 hidden sm:inline">|</span>
+            <span className="block sm:inline w-full sm:w-auto">Tech studio, Trichy</span>
           </div>
           <div className="flex items-center gap-6">
             <button
@@ -367,17 +367,17 @@ export const Index: React.FC = () => {
       {/* Lightweight Placeholder Modal for Privacy / Terms */}
       {activeModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm"
           onClick={() => setActiveModal(null)}
         >
           <div
-            className="liquid-glass rounded-3xl p-8 max-w-md w-full border border-white/10 text-left"
+            className="liquid-glass rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/10 text-left max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-white text-xl font-medium tracking-tight mb-3">
+            <h3 className="text-white text-lg sm:text-xl font-medium tracking-tight mb-3">
               {activeModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
             </h3>
-            <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+            <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-6 font-light">
               Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
               For any questions or data requests, please write to us at{' '}
               <a href="mailto:mounaragamtle@gmail.com" className="text-white underline">

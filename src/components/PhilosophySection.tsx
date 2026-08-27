@@ -6,14 +6,14 @@ export const PhilosophySection: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="bg-black py-28 md:py-40 px-6 overflow-hidden">
+    <section className="bg-black py-16 sm:py-28 md:py-40 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto" ref={ref}>
         {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-16 md:mb-24"
+          className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-white tracking-tight mb-10 sm:mb-16 md:mb-24"
         >
           Innovation{' '}
           <span className="font-instrument italic text-white/40 font-normal">
@@ -23,7 +23,7 @@ export const PhilosophySection: React.FC = () => {
         </motion.h2>
 
         {/* Two-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
           {/* Left Column: Video */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

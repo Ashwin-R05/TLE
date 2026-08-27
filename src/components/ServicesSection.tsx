@@ -43,7 +43,7 @@ export const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section id="services" className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
+    <section id="services" className="bg-black py-16 sm:py-28 md:py-40 px-4 sm:px-6 overflow-hidden relative">
       {/* Subtle radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)] pointer-events-none" />
 
@@ -53,12 +53,12 @@ export const ServicesSection: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-end justify-between mb-12 md:mb-16"
+          className="flex items-end justify-between mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-3xl md:text-5xl text-white tracking-tight font-normal">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl text-white tracking-tight font-normal">
             What we do
           </h2>
-          <span className="text-white/40 text-sm hidden md:inline font-medium tracking-wide">
+          <span className="text-white/40 text-xs sm:text-sm hidden md:inline font-medium tracking-wide">
             Our services
           </span>
         </motion.div>
@@ -94,9 +94,9 @@ export const ServicesSection: React.FC = () => {
               </div>
 
               {/* Card body */}
-              <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="uppercase tracking-widest text-white/40 text-xs font-semibold">
+              <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <span className="uppercase tracking-widest text-white/40 text-[11px] sm:text-xs font-semibold">
                     {service.tag}
                   </span>
                   <button
@@ -113,10 +113,10 @@ export const ServicesSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-white text-xl md:text-2xl mb-3 tracking-tight font-medium">
+                  <h3 className="text-white text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 tracking-tight font-medium">
                     {service.title}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed">
                     {service.description}
                   </p>
                 </div>

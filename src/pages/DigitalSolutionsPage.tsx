@@ -79,16 +79,16 @@ export const DigitalSolutionsPage: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen w-full select-none selection:bg-white/20 selection:text-white relative">
       {/* Navbar */}
-      <header className="relative z-20 px-6 py-6 w-full">
-        <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+      <header className="relative z-20 px-4 sm:px-6 py-4 sm:py-6 w-full">
+        <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between">
           {/* Left: Logo & Nav items */}
           <div className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-2.5 group cursor-pointer bg-transparent border-none p-0 text-left"
+              className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer bg-transparent border-none p-0 text-left"
             >
-              <Logo className="w-6 h-6 text-white group-hover:scale-105 transition-transform duration-300" />
-              <span className="text-white font-semibold text-lg tracking-tight">
+              <Logo className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-105 transition-transform duration-300" />
+              <span className="text-white font-semibold text-base sm:text-lg tracking-tight">
                 TLE
               </span>
             </Link>
@@ -106,16 +106,16 @@ export const DigitalSolutionsPage: React.FC = () => {
           </div>
 
           {/* Right: Action buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               to="/student-guidance"
-              className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2"
+              className="text-white text-xs sm:text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-1.5 sm:px-2 whitespace-nowrap"
             >
               For Students
             </Link>
             <Link
               to="/digital-solutions"
-              className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block"
+              className="liquid-glass rounded-full px-3.5 sm:px-6 py-1.5 sm:py-2 text-white text-xs sm:text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block whitespace-nowrap"
             >
               For Businesses
             </Link>
@@ -124,7 +124,7 @@ export const DigitalSolutionsPage: React.FC = () => {
       </header>
 
       {/* 2. Hero Headline Section */}
-      <section className="pt-20 md:pt-32 pb-16 md:pb-24 px-6 relative overflow-hidden text-center">
+      <section className="pt-16 sm:pt-20 md:pt-32 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 relative overflow-hidden text-center">
         {/* Subtle radial gradient overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.04)_0%,_transparent_70%)] pointer-events-none" />
 
@@ -133,7 +133,7 @@ export const DigitalSolutionsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white/40 text-xs md:text-sm tracking-widest uppercase mb-6 font-medium"
+            className="text-white/40 text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6 font-medium"
           >
             Capabilities &amp; Practice
           </motion.div>
@@ -142,7 +142,7 @@ export const DigitalSolutionsPage: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight font-instrument font-normal mb-8"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight font-instrument font-normal mb-6 sm:mb-8"
           >
             Digital Solutions
           </motion.h1>
@@ -151,7 +151,7 @@ export const DigitalSolutionsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white/70 text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-light"
+            className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-light px-2"
           >
             Web, app, and software development, UI/UX design, and digital
             marketing — for businesses that need real solutions, not templates.
@@ -160,14 +160,14 @@ export const DigitalSolutionsPage: React.FC = () => {
       </section>
 
       {/* 3. Agenda / Goal Section (Statement Pattern) */}
-      <section className="py-20 md:py-28 px-6 bg-zinc-950/40 border-y border-white/5 relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-zinc-950/40 border-y border-white/5 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-white/40 text-xs md:text-sm tracking-widest uppercase mb-6 font-medium"
+            className="text-white/40 text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6 font-medium"
           >
             Our Agenda
           </motion.div>
@@ -177,7 +177,7 @@ export const DigitalSolutionsPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-3xl md:text-5xl lg:text-6xl text-white leading-[1.2] tracking-tight mb-8 font-normal"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.2] tracking-tight mb-6 sm:mb-8 font-normal"
           >
             We started this because most agencies sell templates dressed up as
             solutions.{' '}
@@ -192,7 +192,7 @@ export const DigitalSolutionsPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white/50 text-sm md:text-base leading-relaxed max-w-3xl font-light"
+            className="text-white/50 text-xs sm:text-sm md:text-base leading-relaxed max-w-3xl font-light"
           >
             We don't outsource core engineering or hide behind jargon. Every
             system, storefront, and architecture we build is crafted to handle
@@ -202,19 +202,19 @@ export const DigitalSolutionsPage: React.FC = () => {
       </section>
 
       {/* 4. Projects / Work Section */}
-      <section className="py-24 md:py-36 px-6 relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Header row */}
-          <div className="flex items-end justify-between mb-12 md:mb-16">
+          <div className="flex items-end justify-between mb-8 sm:mb-12 md:mb-16">
             <div>
-              <span className="text-white/40 text-xs md:text-sm tracking-widest uppercase mb-2 block font-medium">
+              <span className="text-white/40 text-xs sm:text-sm tracking-widest uppercase mb-2 block font-medium">
                 Portfolio &amp; Work
               </span>
-              <h2 className="text-3xl md:text-5xl text-white tracking-tight font-normal">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl text-white tracking-tight font-normal">
                 Featured Projects
               </h2>
             </div>
-            <span className="text-white/40 text-sm hidden md:inline font-medium tracking-wide">
+            <span className="text-white/40 text-xs sm:text-sm hidden md:inline font-medium tracking-wide">
               Selected builds
             </span>
           </div>
@@ -256,12 +256,12 @@ export const DigitalSolutionsPage: React.FC = () => {
                 </div>
 
                 {/* Card Content */}
-                <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
                       {/* Honest Status Tag */}
                       <span
-                        className={`text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full border ${
+                        className={`text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase px-2.5 sm:px-3 py-1 rounded-full border ${
                           project.status === 'Client project'
                             ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
                             : project.status === 'Hackathon build'
@@ -277,21 +277,21 @@ export const DigitalSolutionsPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-white text-xl md:text-2xl mb-3 tracking-tight font-medium">
+                    <h3 className="text-white text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 tracking-tight font-medium">
                       {project.name}
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+                    <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-light">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Tech stack badges */}
                   {project.techStack && (
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-3 sm:pt-4 border-t border-white/5">
                       {project.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="text-[11px] font-mono text-white/40 bg-white/5 px-2 py-0.5 rounded-md"
+                          className="text-[10px] sm:text-[11px] font-mono text-white/40 bg-white/5 px-2 py-0.5 rounded-md"
                         >
                           {tech}
                         </span>
@@ -306,19 +306,19 @@ export const DigitalSolutionsPage: React.FC = () => {
       </section>
 
       {/* 5. Closing CTA */}
-      <section className="py-24 md:py-32 px-6 border-t border-white/5 text-center relative overflow-hidden">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 border-t border-white/5 text-center relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-6xl text-white tracking-tight font-instrument mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl text-white tracking-tight font-instrument mb-4 sm:mb-6">
             Have a project in mind?
           </h2>
-          <p className="text-white/60 text-sm md:text-base mb-10 max-w-lg mx-auto font-light leading-relaxed">
+          <p className="text-white/60 text-xs sm:text-sm md:text-base mb-8 sm:mb-10 max-w-lg mx-auto font-light leading-relaxed px-2">
             Tell us about the challenge you're solving. We'll give you an honest
             technical breakdown and architecture plan.
           </p>
 
           <a
             href="mailto:mounaragamtle@gmail.com?subject=Start%20a%20Project%20%E2%80%94%20Digital%20Solutions%20TLE&body=Hi%20TLE%20team,%0A%0AI%20would%20like%20to%20start%20a%20project.%0A%0AOverview:%0A- Business/Brand Name:%0A- Scope:%0A- Target Timeline:%0A%0ALooking%20forward%20to%20connecting!"
-            className="liquid-glass rounded-full px-8 py-3.5 text-white text-sm font-medium hover:bg-white/5 transition-all inline-flex items-center gap-2 group cursor-pointer hover:scale-105 active:scale-95"
+            className="liquid-glass rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-white text-xs sm:text-sm font-medium hover:bg-white/5 transition-all inline-flex items-center gap-2 group cursor-pointer hover:scale-105 active:scale-95"
           >
             <span>Start a project.</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -327,14 +327,14 @@ export const DigitalSolutionsPage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-12 px-6 text-center text-white/40 text-xs bg-black">
+      <footer className="border-t border-white/5 py-10 sm:py-12 px-4 sm:px-6 text-center text-white/40 text-xs bg-black">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
             <Logo className="w-4 h-4 text-white/80" />
             <span className="text-white/80 font-medium">TLE</span>
             <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
-            <span className="mx-1 text-white/20">|</span>
-            <span>Tech studio, Trichy</span>
+            <span className="mx-1 text-white/20 hidden sm:inline">|</span>
+            <span className="block sm:inline w-full sm:w-auto">Tech studio, Trichy</span>
           </div>
           <div className="flex items-center gap-6">
             <button
@@ -365,17 +365,17 @@ export const DigitalSolutionsPage: React.FC = () => {
       {/* Lightweight Placeholder Modal for Privacy / Terms */}
       {activeModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm"
           onClick={() => setActiveModal(null)}
         >
           <div
-            className="liquid-glass rounded-3xl p-8 max-w-md w-full border border-white/10 text-left"
+            className="liquid-glass rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/10 text-left max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-white text-xl font-medium tracking-tight mb-3">
+            <h3 className="text-white text-lg sm:text-xl font-medium tracking-tight mb-3">
               {activeModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
             </h3>
-            <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+            <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-6 font-light">
               Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
               For any questions or data requests, please write to us at{' '}
               <a href="mailto:mounaragamtle@gmail.com" className="text-white underline">
