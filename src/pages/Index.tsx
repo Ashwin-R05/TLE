@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Globe, ArrowRight, Instagram, Twitter } from 'lucide-react';
 import { AboutSection } from '../components/AboutSection';
 import { FeaturedVideoSection } from '../components/FeaturedVideoSection';
@@ -10,8 +11,9 @@ export const Index: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafIdRef = useRef<number | null>(null);
   const isFadingOutRef = useRef<boolean>(false);
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [activeModal, setActiveModal] = useState<'privacy' | 'terms' | null>(null);
 
   // Smooth vanilla JS requestAnimationFrame opacity fade helper
   const animateOpacity = (
@@ -102,15 +104,38 @@ export const Index: React.FC = () => {
     };
   }, []);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    setIsSubscribed(true);
-    setTimeout(() => setIsSubscribed(false), 3500);
+    if (!message.trim()) return;
+
+    // Compose pre-filled email client dispatch
+    const subject = encodeURIComponent('Project Inquiry via TLE Web');
+    const body = encodeURIComponent(
+      `Hi TLE team,\n\nHere is what I am building / exploring:\n\n${message.trim()}\n\nContact Details:\n- Name:\n- Email / Phone:\n\nLooking forward to speaking!`
+    );
+
+    window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setMessage('');
+    }, 6000);
   };
 
   return (
-    <div className="bg-black text-white min-h-screen w-full select-none selection:bg-white/20 selection:text-white">
+    <div className="bg-black text-white min-h-screen w-full select-none selection:bg-white/20 selection:text-white relative">
       {/* ========================================================================= */}
       {/* SECTION 1 -- HERO (Full Viewport) */}
       {/* ========================================================================= */}
@@ -135,50 +160,57 @@ export const Index: React.FC = () => {
           <nav className="liquid-glass rounded-full max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
             {/* Left: Logo & Nav items */}
             <div className="flex items-center">
-              <a href="#" className="flex items-center gap-2 group">
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="flex items-center gap-2 group cursor-pointer bg-transparent border-none p-0 text-left"
+              >
                 <Globe className="w-6 h-6 text-white group-hover:rotate-45 transition-transform duration-500" />
                 <span className="text-white font-semibold text-lg tracking-tight">
                   TLE
                 </span>
-              </a>
+              </button>
 
               {/* Desktop Nav Links */}
               <div className="hidden md:flex items-center gap-8 ml-8">
-                <a
-                  href="#services"
+                <Link
+                  to="/digital-solutions"
                   className="text-white/80 hover:text-white text-sm font-medium transition-colors"
                 >
                   Services
-                </a>
-                <a
-                  href="#students"
-                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('students')}
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors cursor-pointer bg-transparent border-none p-0"
                 >
                   Students
-                </a>
-                <a
-                  href="#about"
-                  className="text-white/80 hover:text-white text-sm font-medium transition-colors"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('about')}
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors cursor-pointer bg-transparent border-none p-0"
                 >
                   About
-                </a>
+                </button>
               </div>
             </div>
 
             {/* Right: Action buttons */}
             <div className="flex items-center gap-4">
-              <a
-                href="#students"
-                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2"
+              <button
+                type="button"
+                onClick={() => scrollToSection('students')}
+                className="text-white text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-2 bg-transparent border-none"
               >
                 For Students
-              </a>
-              <a
-                href="#services"
+              </button>
+              <Link
+                to="/digital-solutions"
                 className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block"
               >
                 For Businesses
-              </a>
+              </Link>
             </div>
           </nav>
         </header>
@@ -197,7 +229,7 @@ export const Index: React.FC = () => {
 
           {/* Email input */}
           <motion.form
-            onSubmit={handleSubscribe}
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -207,21 +239,32 @@ export const Index: React.FC = () => {
               <input
                 type="text"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder={
-                  isSubscribed ? 'Thank you! We\'ll reach out soon.' : "Tell us what you're building"
+                  isSubmitted
+                    ? 'Opening your email client...'
+                    : "Tell us what you're building"
                 }
                 className="bg-transparent text-white placeholder:text-white/40 text-sm md:text-base outline-none flex-1 font-sans"
               />
               <button
                 type="submit"
-                aria-label="Submit message"
+                aria-label="Submit project message"
                 className="bg-white rounded-full p-3 text-black hover:bg-white/90 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0"
               >
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
+            {isSubmitted && (
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-white/70 text-xs mt-3 font-light tracking-wide"
+              >
+                Email draft generated. If your client didn't open automatically, write to us directly at contact@tle.in.
+              </motion.p>
+            )}
           </motion.form>
 
           {/* Subtitle */}
@@ -236,10 +279,7 @@ export const Index: React.FC = () => {
 
           {/* Manifesto Button */}
           <motion.button
-            onClick={() => {
-              const el = document.getElementById('manifesto') || document.getElementById('about');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => scrollToSection('manifesto')}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -254,26 +294,26 @@ export const Index: React.FC = () => {
         {/* Social Icons Footer */}
         <div className="relative z-10 flex justify-center gap-4 pb-12">
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/tle.in"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Instagram"
             className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
           >
             <Instagram className="w-5 h-5" />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://x.com/tle_in"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Twitter"
             className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
           >
             <Twitter className="w-5 h-5" />
           </a>
           <a
-            href="#"
-            aria-label="Global Network"
+            href="mailto:contact@tle.in"
+            aria-label="Email TLE"
             className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-110"
           >
             <Globe className="w-5 h-5" />
@@ -312,18 +352,61 @@ export const Index: React.FC = () => {
             <span>Tech studio, Trichy</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#about" className="hover:text-white transition-colors">
+            <button
+              type="button"
+              onClick={() => scrollToSection('about')}
+              className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
+            >
               About
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveModal('privacy')}
+              className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
+            >
               Privacy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveModal('terms')}
+              className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
+            >
               Terms
-            </a>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Lightweight Placeholder Modal for Privacy / Terms */}
+      {activeModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+          onClick={() => setActiveModal(null)}
+        >
+          <div
+            className="liquid-glass rounded-3xl p-8 max-w-md w-full border border-white/10 text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-white text-xl font-medium tracking-tight mb-3">
+              {activeModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+            </h3>
+            <p className="text-white/60 text-sm leading-relaxed mb-6 font-light">
+              Our official {activeModal === 'privacy' ? 'privacy policy' : 'terms of service'} document is coming soon before public release.
+              For any questions or data requests, please write to us at{' '}
+              <a href="mailto:contact@tle.in" className="text-white underline">
+                contact@tle.in
+              </a>.
+            </p>
+            <button
+              type="button"
+              onClick={() => setActiveModal(null)}
+              className="liquid-glass rounded-full px-6 py-2 text-white text-xs font-medium hover:bg-white/5 transition-colors cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

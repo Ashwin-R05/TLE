@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface ServiceCardData {
   videoUrl: string;
@@ -29,8 +30,21 @@ const services: ServiceCardData[] = [
 ];
 
 export const ServicesSection: React.FC = () => {
+  const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const handleServiceClick = (tag: string) => {
+    if (tag === 'FOR BUSINESSES') {
+      navigate('/digital-solutions');
+    } else {
+      const subject = encodeURIComponent('Idea & Project Guidance Inquiry — TLE');
+      const body = encodeURIComponent(
+        'Hi TLE team,\n\nI am a student looking for guidance and mentorship on my project idea.\n\nProject Details:\n- Name & College:\n- Project Topic / Concept:\n- Areas needing guidance (Research / Architecture / Documentation / Tech Stack):\n\nLooking forward to hearing from you!'
+      );
+      window.location.href = `mailto:contact@tle.in?subject=${subject}&body=${body}`;
+    }
+  };
 
   return (
     <section id="services" className="bg-black py-28 md:py-40 px-6 overflow-hidden relative">
@@ -58,7 +72,8 @@ export const ServicesSection: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.tag}
-              id={index === 1 ? 'students' : undefined}
+              id={index === 0 ? 'businesses' : 'students'}
+              onClick={() => handleServiceClick(service.tag)}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{
@@ -88,9 +103,17 @@ export const ServicesSection: React.FC = () => {
                   <span className="uppercase tracking-widest text-white/40 text-xs font-semibold">
                     {service.tag}
                   </span>
-                  <div className="liquid-glass rounded-full p-2 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleServiceClick(service.tag);
+                    }}
+                    aria-label={`Inquire about ${service.title}`}
+                    className="liquid-glass rounded-full p-2 text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300 cursor-pointer"
+                  >
                     <ArrowUpRight className="w-4 h-4" />
-                  </div>
+                  </button>
                 </div>
 
                 <div>
