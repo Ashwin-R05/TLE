@@ -6,7 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.13-black.svg?style=flat&logo=framer)](https://www.framer.com/motion/)
 
-> **TLE** is a boutique technology studio based in Trichy, India. We build high-performance, bespoke digital products for businesses and provide hands-on, 1-on-1 engineering mentorship to help student innovators turn raw concepts into real, deeply understood technical projects.
+> **TLE** is a technology studio based in Trichy, India. We build high-performance, bespoke digital products for businesses and provide hands-on, 1-on-1 engineering mentorship to help student innovators turn raw concepts into real, deeply understood technical projects.
 
 ---
 
