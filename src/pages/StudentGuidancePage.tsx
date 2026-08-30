@@ -155,7 +155,7 @@ export const StudentGuidancePage: React.FC = () => {
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
               to="/student-guidance"
-              className="text-white text-xs sm:text-sm font-medium hover:text-white/80 transition-colors cursor-pointer px-1.5 sm:px-2 whitespace-nowrap"
+              className="liquid-glass rounded-full px-3.5 sm:px-6 py-1.5 sm:py-2 text-white text-xs sm:text-sm font-medium hover:bg-white/5 transition-colors cursor-pointer inline-block whitespace-nowrap"
             >
               For Students
             </Link>
