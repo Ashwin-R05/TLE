@@ -79,7 +79,7 @@ export const Index: React.FC = () => {
       setTimeout(() => {
         if (!videoRef.current) return;
         videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(() => {});
+        videoRef.current.play().catch(() => { });
         isFadingOutRef.current = false;
         animateOpacity(0, 1, 500);
       }, 100);
@@ -91,7 +91,7 @@ export const Index: React.FC = () => {
 
     // Initial check if already playable
     if (video.readyState >= 3) {
-      video.play().catch(() => {});
+      video.play().catch(() => { });
       animateOpacity(0, 1, 500);
     }
 
@@ -281,7 +281,7 @@ export const Index: React.FC = () => {
         {/* Social Icons Footer */}
         <div className="relative z-10 flex justify-center gap-4 pb-12">
           <a
-            href="https://instagram.com/tle.in"
+            href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -290,7 +290,7 @@ export const Index: React.FC = () => {
             <Instagram className="w-5 h-5" />
           </a>
           <a
-            href="https://x.com/tle_in"
+            href="https://x.com/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
